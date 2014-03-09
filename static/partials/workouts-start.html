@@ -39,7 +39,7 @@
 		</div>
 	</div>
 
-	<div class="item row" ng-repeat="exercise in exercises">
+	<div class="item row" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
 		<div class="col col-xs-12 title" ng-click="current.exercise = exercise">
 			{{ exercise.name }}
 		</div>
