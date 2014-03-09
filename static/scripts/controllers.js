@@ -5,23 +5,15 @@ angular.module('fitApp').
 
 	}).
 
-	controller('ExercisesCtrl', function($scope) {
-		$scope.exercises = [
-			{
-				name: 'Жим ногами',
-				type: 'repeatable'
-			},
-			{
-				name: 'Жим от груди лёжа',
-				type: 'repeatable'
-			},
-			{
-				name: 'Бег',
-				type: 'continuable'
-			}
-		];
+	controller('ExercisesCtrl', function($scope, storage) {
+		$scope.exercises = storage.exercises();
 	}).
 
-	controller('ExercisesAddCtrl', function($scope, storage) {
-		console.log(storage);
+	controller('ExercisesAddCtrl', function($scope, $location, storage) {
+		$scope.exercise = {};
+
+		$scope.save = function(exercise) {
+			storage.addExercise(exercise);
+			$location.path('/exercises');
+		}
 	});
