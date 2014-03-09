@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-	<div class="item row" ng-repeat="completed in workout.exercises">
+	<div class="item row" ng-repeat="completed in workout.exercises" ng-swipe-left="removeExercise(completed)">
 		<div class="col col-xs-8 title">
 			{{ completed.exercise.name }}
 		</div>

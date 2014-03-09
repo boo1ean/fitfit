@@ -22,6 +22,7 @@ angular.module('fitApp').
 
 		$window.onbeforeunload = warning;
 
+		var id = 1;
 		$scope.current = {};
 		$scope.adding = false;
 		$scope.exercises = storage.exercises();
@@ -40,9 +41,21 @@ angular.module('fitApp').
 		};
 
 		$scope.addExercise = function(exercise) {
+			exercise.id = id++;
 			$scope.workout.exercises.unshift(exercise);
 			$scope.adding = false;
 			$scope.current = {};
+		};
+
+		$scope.removeExercise = function(exercise) {
+			if (confirm('Удалить подход?')) {
+				for (var i in $scope.workout.exercises) {
+					if ($scope.workout.exercises[i].id === exercise.id) {
+						$scope.workout.exercises.splice(i, 1);
+						return;
+					}
+				}
+			}
 		};
 
 		$scope.finish = function() {
