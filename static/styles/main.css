@@ -35,3 +35,8 @@ a:hover,
 .controls .remove {
 	background: #fff5f5;
 }
+
+.ex-weight,
+.ex-times {
+	border-left: thin dashed #888;
+}

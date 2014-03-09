@@ -1,0 +1,13 @@
+<div class="toolbar row">
+	<div class="col col-xs-6">
+		<a href="/">
+			<span class="glyphicon glyphicon-arrow-left"></span>
+		</a>
+	</div>
+</div>
+
+<div class="item row" ng-repeat="workout in workouts">
+	<div class="col col-xs-12 title">
+		{{ workout.start_time }}
+	</div>
+</div>

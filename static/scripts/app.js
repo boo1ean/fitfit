@@ -7,6 +7,10 @@ angular.module('fitApp', ['ngRoute', 'ngTouch', 'fitApp.services']).
 			templateUrl: 'partials/index.html',
 			controller: 'IndexCtrl'
 		}).
+			when('/workouts-history', {
+			templateUrl: 'partials/workouts-history.html',
+			controller: 'WorkoutsHistoryCtrl'
+		}).
 			when('/workouts-start', {
 			templateUrl: 'partials/workouts-start.html',
 			controller: 'WorkoutsStartCtrl'

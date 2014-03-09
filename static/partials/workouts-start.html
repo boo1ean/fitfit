@@ -12,6 +12,18 @@
 			</a>
 		</div>
 	</div>
+
+	<div class="item row" ng-repeat="completed in workout.exercises">
+		<div class="col col-xs-8 title">
+			{{ completed.exercise.name }}
+		</div>
+		<div class="col col-xs-2 ex-weight">
+			{{ completed.weight }}
+		</div>
+		<div class="col col-xs-2 ex-times">
+			{{ completed.times }}
+		</div>
+	</div>
 </div>
 
 <div ng-show="adding && !current.exercise">

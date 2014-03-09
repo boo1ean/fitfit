@@ -56,6 +56,14 @@ angular.module('fitApp.services', []).
 
 			removeExercise: function(exercise) {
 				return storage.removeItem('exercises', exercise);
+			},
+
+			workouts: function() {
+				return storage.get('workouts');
+			},
+
+			addWorkout: function(workout) {
+				storage.push('workouts', timestampify(workout));
 			}
 		};
 
