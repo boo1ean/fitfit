@@ -1,6 +1,6 @@
 <div ng-show="!adding">
 	<div class="text-center workout-timer">
-		<h3>{{ currentTime - workout.startTime | amDurationFormat }}</h3>
+		<h4>{{ currentTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
 
 	<div class="toolbar row">
@@ -62,7 +62,7 @@
 
 			<div class="row">
 				<div class="col col-xs-12">
-					<input type="text" placeholder="Вес" class="form-control input-lg" ng-model="current.weight" />
+					<input type="number" placeholder="Вес" class="form-control input-lg" ng-model="current.weight" />
 				</div>
 			</div>
 
@@ -70,7 +70,7 @@
 
 			<div class="row">
 				<div class="col col-xs-12">
-					<input type="text" placeholder="Кол-во повторений" class="form-control input-lg" ng-model="current.times" />
+					<input type="number" placeholder="Кол-во повторений" class="form-control input-lg" ng-model="current.times" />
 				</div>
 			</div>
 

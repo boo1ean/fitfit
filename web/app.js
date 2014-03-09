@@ -1,7 +1,7 @@
 var express = require('express'),
     resolve = require('path').resolve;
 
-var port = 3005;
+var port = 3042;
 var app = express();
 
 app.use(express.static(__dirname + '/../static'));
