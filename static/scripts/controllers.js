@@ -5,7 +5,7 @@ var IndexCtrl = function($scope) {
 };
 
 var ExercisesCtrl = function($scope) {
-	$scope.exercies = [
+	$scope.exercises = [
 		{
 			name: 'Жим ногами',
 			type: 'repeatable'
