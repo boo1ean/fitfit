@@ -42,7 +42,8 @@ angular.module('fitApp').
 		};
 	}).
 
-	controller('ExercisesCtrl', function($scope, storage) {
+	controller('ExercisesCtrl', function($scope, $window, storage) {
+		$window.moment.lang('ru');
 		$scope.exercises = storage.exercises();
 
 		$scope.remove = function(exercise) {

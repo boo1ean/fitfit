@@ -8,6 +8,6 @@
 
 <div class="item row" ng-repeat="workout in workouts">
 	<div class="col col-xs-12 title">
-		{{ workout.start_time }}
+		{{ workout.start_time | amCalendar }}
 	</div>
 </div>
