@@ -2,10 +2,15 @@ angular.module('fitApp.services', []).
 	factory('storage', function () {
 		'use strict';
 
-		var STORAGE_PREFIX = 'best fit storage ever + ';
+		var STORAGE_PREFIX = 'fit + ';
+		var ID_SUFFIX = ' + id';
 
 		var k = function(key) {
 			return STORAGE_PREFIX + key;
+		};
+
+		var i = function(key) {
+			return k(key) + ID_SUFFIX;
 		};
 
 		var timestampify = function(object) {
@@ -17,7 +22,7 @@ angular.module('fitApp.services', []).
 
 		var removeItem = function(items, item) {
 			for (var i in items) {
-				if (items[i].created_at === item.created_at) {
+				if (items[i].id === item.id) {
 					items.splice(i, 1);
 					return items;
 				}
@@ -32,8 +37,24 @@ angular.module('fitApp.services', []).
 			set: function (key, value) {
 				localStorage.setItem(k(key), JSON.stringify(value));
 			},
+
+			getLastId: function(key) {
+				return (localStorage.getItem(i(key)) - 0) || 0;
+			},
+
+			setLastId: function(key, value) {
+				localStorage.setItem(i(key), value - 0);
+			},
+
+			nextId: function(key) {
+				var id = storage.getLastId(key) + 1;
+				storage.setLastId(key, id);
+				return id;
+			},
 			
 			push: function(key, value) {
+				value.id = storage.nextId(key);
+
 				var stored = storage.get(key);
 				stored.unshift(value);
 				storage.set(key, stored);
