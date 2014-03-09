@@ -29,6 +29,14 @@ angular.module('fitApp.services', []).
 			};
 		};
 
+		var find = function(items, id) {
+			for (var i in items) {
+				if (items[i].id === id) {
+					items[i];
+				}
+			};
+		};
+
 		var storage = {
 			get: function (key) {
 				return JSON.parse(localStorage.getItem(k(key)) || '[]');
@@ -60,11 +68,18 @@ angular.module('fitApp.services', []).
 				storage.set(key, stored);
 			},
 
-			removeItem: function(key, item) {
+			remove: function(key, item) {
 				var stored = storage.get(key);
 				stored = removeItem(stored, item);
 				storage.set(key, stored);
 				return stored;
+			},
+
+			touch: function(key, id) {
+				var stored = storage.get(key);
+				var item = find(stored, id);
+				item.accessed_at = new Date();
+				storage.set(key, stored);
 			},
 
 			exercises: function() {
@@ -76,7 +91,11 @@ angular.module('fitApp.services', []).
 			},
 
 			removeExercise: function(exercise) {
-				return storage.removeItem('exercises', exercise);
+				return storage.remove('exercises', exercise);
+			},
+			
+			touchExercise: function(id) {
+				return storage.touch('exercise', id);
 			},
 
 			workouts: function() {
@@ -88,7 +107,7 @@ angular.module('fitApp.services', []).
 			},
 
 			removeWorkout: function(workout) {
-				return storage.removeItem('workouts', workout);
+				return storage.remove('workouts', workout);
 			}
 		};
 
