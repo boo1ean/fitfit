@@ -1,4 +1,8 @@
 <div ng-show="!adding">
+	<div class="text-center workout-timer">
+		<h3>{{ currentTime - workout.startTime | amDurationFormat }}</h3>
+	</div>
+
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a href="" ng-click="finish()">

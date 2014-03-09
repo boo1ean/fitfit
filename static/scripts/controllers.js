@@ -9,7 +9,7 @@ angular.module('fitApp').
 		$scope.workouts = storage.workouts();
 	}).
 
-	controller('WorkoutsStartCtrl', function($scope, $window, $location, storage) {
+	controller('WorkoutsStartCtrl', function($scope, $window, $location, $interval, storage) {
 		var warning = function() {
 			return 'Тренеровка еще не закончена. Вы уверенных что хотите завершить сейчас?'
 		};
@@ -19,10 +19,15 @@ angular.module('fitApp').
 		$scope.current = {};
 		$scope.adding = false;
 		$scope.exercises = storage.exercises();
+		$scope.currentTime = new Date();
 		$scope.workout = {
-			start_time: new Date(),
+			startTime: new Date(),
 			exercises: []
 		};
+
+		var interval = $interval(function() {
+			$scope.currentTime = new Date();
+		}, 1000);
 
 		$scope.unsetExercise = function() {
 			delete $scope.current.exercise;

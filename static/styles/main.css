@@ -12,7 +12,6 @@
 	line-height: 3em;
 }
 
-a:hover,
 .item:hover {
 	background: #ffe;
 }
@@ -39,4 +38,10 @@ a:hover,
 .ex-weight,
 .ex-times {
 	border-left: thin dashed #888;
+}
+
+.workout-timer {
+	position: absolute;
+	text-align: center;
+	width: 100%;
 }
