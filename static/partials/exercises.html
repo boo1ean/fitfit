@@ -12,7 +12,16 @@
 </div>
 
 <div class="item row" ng-repeat="exercise in exercises">
-	<div class="col col-xs-12 title">
+	<div class="col col-xs-12 title" ng-show="!actions" ng-swipe-left="actions = true">
 		{{ exercise.name }}
+	</div>
+
+	<div class="col col-xs-12 controls" ng-show="actions">
+		<div class="col col-xs-6 cancel" ng-click="actions = false">
+			отмена
+		</div>
+		<div class="col col-xs-6 remove" ng-click="remove(exercise)">
+			удалить
+		</div>
 	</div>
 </div>

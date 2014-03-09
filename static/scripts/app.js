@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fitApp', ['ngRoute', 'fitApp.services']).
+angular.module('fitApp', ['ngRoute', 'ngTouch', 'fitApp.services']).
 	config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider.
 			when('/', {

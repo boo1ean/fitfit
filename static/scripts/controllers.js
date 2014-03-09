@@ -7,6 +7,10 @@ angular.module('fitApp').
 
 	controller('ExercisesCtrl', function($scope, storage) {
 		$scope.exercises = storage.exercises();
+
+		$scope.remove = function(exercise) {
+			$scope.exercises = storage.removeExercise(exercise);
+		};
 	}).
 
 	controller('ExercisesAddCtrl', function($scope, $location, storage) {
