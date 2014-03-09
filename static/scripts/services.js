@@ -35,7 +35,7 @@ angular.module('fitApp.services', []).
 			
 			push: function(key, value) {
 				var stored = storage.get(key);
-				stored.push(value);
+				stored.unshift(value);
 				storage.set(key, stored);
 			},
 
