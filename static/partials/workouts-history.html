@@ -6,8 +6,8 @@
 	</div>
 </div>
 
-<div class="item row" ng-repeat="workout in workouts">
+<div class="item row" ng-repeat="workout in workouts" ng-swipe-left="remove(workout)">
 	<div class="col col-xs-12 title">
-		{{ workout.start_time | amCalendar }}
+		{{ workout.startTime | amCalendar }}
 	</div>
 </div>

@@ -17,7 +17,7 @@ angular.module('fitApp.services', []).
 
 		var removeItem = function(items, item) {
 			for (var i in items) {
-				if (items[i].name === item.name) {
+				if (items[i].created_at === item.created_at) {
 					items.splice(i, 1);
 					return items;
 				}
@@ -64,6 +64,10 @@ angular.module('fitApp.services', []).
 
 			addWorkout: function(workout) {
 				storage.push('workouts', timestampify(workout));
+			},
+
+			removeWorkout: function(workout) {
+				return storage.removeItem('workouts', workout);
 			}
 		};
 

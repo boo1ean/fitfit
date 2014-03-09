@@ -5,8 +5,14 @@ angular.module('fitApp').
 
 	}).
 
-	controller('WorkoutsHistoryCtrl', function($scope, storage) {
+	controller('WorkoutsHistoryCtrl', function($scope, $window, storage) {
 		$scope.workouts = storage.workouts();
+
+		$scope.remove = function(workout) {
+			if ($window.confirm('Удалить запись о тренеровке')) {
+				$scope.workouts = storage.removeWorkout(workout);
+			};
+		};
 	}).
 
 	controller('WorkoutsStartCtrl', function($scope, $window, $location, $interval, storage) {
@@ -42,6 +48,7 @@ angular.module('fitApp').
 		$scope.finish = function() {
 			if (confirm('Завершить тренеровку?')) {
 				storage.addWorkout($scope.workout);
+				$window.onbeforeunload = null;
 				$location.path('/');
 			}
 		};
@@ -52,7 +59,9 @@ angular.module('fitApp').
 		$scope.exercises = storage.exercises();
 
 		$scope.remove = function(exercise) {
-			$scope.exercises = storage.removeExercise(exercise);
+			if (confirm('Удалить упражнение?')) {
+				$scope.exercises = storage.removeExercise(exercise);
+			};
 		};
 	}).
 
