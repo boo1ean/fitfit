@@ -14,8 +14,8 @@ angular.module('fitApp.services', []).
 		};
 
 		var timestampify = function(object) {
-			object.created_at = new Date();
-			object.updated_at = new Date();
+			object.created_at = new Date().getTime();
+			object.updated_at = new Date().getTime();
 
 			return object
 		};
@@ -29,12 +29,18 @@ angular.module('fitApp.services', []).
 			};
 		};
 
-		var find = function(items, id) {
+		var findIndex = function(items, id) {
 			for (var i in items) {
 				if (items[i].id === id) {
-					items[i];
+					return i;
 				}
 			};
+
+			return null;
+		};
+
+		var find = function(items, id) {
+			return items[findIndex(items, id)];
 		};
 
 		var storage = {
@@ -75,11 +81,20 @@ angular.module('fitApp.services', []).
 				return stored;
 			},
 
-			touch: function(key, id) {
+			update: function(key, id, attrs) {
 				var stored = storage.get(key);
-				var item = find(stored, id);
-				item.accessed_at = new Date();
+				var index = findIndex(stored, id);
+
+				for (var i in attrs) {
+					stored[index][i] = attrs[i];
+				}
+
 				storage.set(key, stored);
+				return stored;
+			},
+
+			touch: function(key, id) {
+				return storage.update(key, id, { accessed_at: new Date().getTime() });
 			},
 
 			exercises: function() {
@@ -95,7 +110,7 @@ angular.module('fitApp.services', []).
 			},
 			
 			touchExercise: function(id) {
-				return storage.touch('exercise', id);
+				return storage.touch('exercises', id);
 			},
 
 			workouts: function() {
