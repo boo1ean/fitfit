@@ -1,0 +1,34 @@
+<div class="btn-group btn-group-justified" ng-show="!selected && !custom">
+	<div class="btn-group" ng-repeat="item in items">
+		<button class="btn btn-lg btn-default" ng-click="select(item)">{{ item.label }}</button>
+	</div>
+	<div class="btn-group">
+		<button class="btn btn-lg btn-primary" ng-click="custom = true">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+	</div>
+</div>
+
+<div class="input-group" ng-show="custom">
+	<input type="text" class="form-control input-lg" ng-model="customValue">
+
+	<span class="input-group-btn">
+		<button class="btn btn-lg btn-success" type="button" ng-click="select({ value: customValue, label: customValue }); custom = false">
+			<span class="glyphicon glyphicon-ok"></span>Сохранить
+		</button>
+
+		<button class="btn btn-lg btn-danger" type="button" ng-click="custom = false">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+	</span>
+</div>
+
+<div class="input-group" ng-show="selected">
+	<input type="text" class="form-control input-lg disabled" ng-model="selected.label" disabled>
+
+	<span class="input-group-btn">
+		<button class="btn btn-lg btn-danger" type="button" ng-click="selected = null">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+	</span>
+</div>
