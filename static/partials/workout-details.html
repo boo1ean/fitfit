@@ -1,0 +1,63 @@
+<div class="toolbar row">
+	<div class="col col-xs-6">
+		<a href="/workouts-history">
+			<span class="glyphicon glyphicon-arrow-left"></span>
+		</a>
+	</div>
+</div>
+
+<div class="row workout-details">
+	<div class="col col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>Сводная статистика</h3>
+			</div>
+
+			<br />
+
+			<div class="row no-margin">
+				<div class="col left col-xs-10">
+					Колличество упражнений:
+				</div>
+				<div class="col right col-xs-2">
+					{{ exercisesCount }}
+				</div>
+			</div>
+
+			<br />
+
+			<div class="row no-margin">
+				<div class="col left col-xs-10">
+					Колличество подходов:
+				</div>
+				<div class="col right col-xs-2">
+					{{ workout.exercises.length }}
+				</div>
+			</div>
+
+			<br />
+
+			<div class="row no-margin">
+				<div class="col left col-xs-10">
+					Суммарно поднятый вес:
+				</div>
+				<div class="col right col-xs-2">
+					{{ totalWeight }}
+				</div>
+			</div>
+
+			<br />
+
+			<div class="row no-margin">
+				<div class="col left col-xs-10">
+					Длительность:
+				</div>
+				<div class="col right col-xs-2">
+					{{ duration.get('h') }} ч. {{ duration.get('m') }} м.
+				</div>
+			</div>
+
+			<br />
+		</div>
+	</div>
+</div>

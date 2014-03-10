@@ -4,23 +4,27 @@ angular.module('fitApp', ['ngRoute', 'ngTouch', 'angularMoment', 'fitApp.service
 	config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider.
 			when('/', {
-			templateUrl: 'partials/index.html',
+			templateUrl: '/partials/index.html',
 			controller: 'IndexCtrl'
 		}).
 			when('/workouts-history', {
-			templateUrl: 'partials/workouts-history.html',
+			templateUrl: '/partials/workouts-history.html',
 			controller: 'WorkoutsHistoryCtrl'
 		}).
 			when('/workouts-start', {
-			templateUrl: 'partials/workouts-start.html',
+			templateUrl: '/partials/workouts-start.html',
 			controller: 'WorkoutsStartCtrl'
 		}).
+			when('/workouts/:id', {
+			templateUrl: '/partials/workout-details.html',
+			controller: 'WorkoutDetailsCtrl'
+		}).
 			when('/exercises', {
-			templateUrl: 'partials/exercises.html',
+			templateUrl: '/partials/exercises.html',
 			controller: 'ExercisesCtrl'
 		}).
 			when('/exercises-add', {
-			templateUrl: 'partials/exercises-add.html',
+			templateUrl: '/partials/exercises-add.html',
 			controller: 'ExercisesAddCtrl'
 		}).
 			otherwise({

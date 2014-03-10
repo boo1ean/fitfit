@@ -5,8 +5,14 @@ angular.module('fitApp').
 
 	}).
 
-	controller('WorkoutsHistoryCtrl', function($scope, $window, storage) {
+	controller('WorkoutsHistoryCtrl', function($scope, $location, storage) {
 		$scope.workouts = storage.workouts();
+
+		$scope.show = function(workout) {
+			$scope.$apply(function() {
+				$location.path('/workouts/' + workout.id);
+			});
+		};
 
 		$scope.remove = function(workout) {
 			$scope.workouts = storage.removeWorkout(workout);
@@ -112,6 +118,17 @@ angular.module('fitApp').
 				$location.path('/');
 			}
 		};
+	}).
+
+	controller('WorkoutDetailsCtrl', function($scope, $routeParams, storage) {
+		var workout = $scope.workout = storage.findWorkout($routeParams.id);
+		$scope.exercisesCount = _.unique(workout.exercises, 'id').length;
+		$scope.totalWeight = _.reduce(workout.exercises, function(result, ex) {
+			result += ex.completed_times * ex.completed_weight;
+			return result;
+		}, 0);
+
+		$scope.duration = moment.duration(workout.endTime - workout.startTime);
 	}).
 
 	controller('ExercisesCtrl', function($scope, $window, storage) {

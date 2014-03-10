@@ -52,8 +52,6 @@
 .swiper {
 	z-index: 100;
 	background: white;
-	border-left: thin solid black;
-	border-right: thin solid black;
 }
 
 .swipe-action {
@@ -73,4 +71,25 @@
 .swipe-action-right {
 	right: 0;
 	background: #b53143; 
+}
+
+.panel-heading h3 {
+	margin-top: 10px;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.workout-details .row .col {
+	font-size: 2em;
+}
+
+.workout-details .left {
+	padding-right: 15px;
+	text-align: right;
+}
+
+.workout-details .right {
+	padding-left: 15px;
 }

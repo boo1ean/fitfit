@@ -31,7 +31,7 @@ angular.module('fitApp.services', []).
 
 		var findIndex = function(items, id) {
 			for (var i in items) {
-				if (items[i].id === id) {
+				if (items[i].id == id) {
 					return i;
 				}
 			};
@@ -74,6 +74,11 @@ angular.module('fitApp.services', []).
 				storage.set(key, stored);
 
 				return value;
+			},
+
+			find: function(key, id) {
+				var stored = storage.get(key);
+				return find(stored, id);
 			},
 
 			remove: function(key, item) {
@@ -135,6 +140,10 @@ angular.module('fitApp.services', []).
 
 			updateWorkout: function(workout) {
 				return storage.update('workouts', workout.id, workout);
+			},
+
+			findWorkout: function(id) {
+				return storage.find('workouts', id);
 			}
 		};
 

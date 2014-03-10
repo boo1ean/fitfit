@@ -36,21 +36,37 @@ angular.module('fitApp').
 					var startCoords,
 					    restrictRight = false,
 					    restrictLeft = false,
+					    swiped = false,
 					    $swiper = angular.element('.swiper', el);
 
 					scope.proceed = false;
 					scope.leftLabel = $sce.trustAsHtml(attrs.leftLabel);
 					scope.rightLabel = $sce.trustAsHtml(attrs.rightLabel);
 
+					if (attrs.onClick) {
+						$swiper.on('click', function() {
+							if (!swiped) {
+								scope.$eval(attrs.onClick);
+							}
+
+							swiped = false;
+						});
+					}
+
 					var isCompleted = function(coords) {
 						var diff = coords.x - startCoords.x;
 						var actionWidth = $swiper.width() / 3.5;
 						return Math.abs(diff) >= actionWidth ? diff : 0;
-					}
+					};
 
-					function updateElementPosition(pos) {
+					var isSwiped = function(coords) {
+						var diff = coords.x - startCoords.x;
+						return Math.abs(diff) > 10;
+					};
+
+					var updateElementPosition = function(pos) {
 						$swiper.css('left', pos);
-					}
+					};
 
 					scope.$watch('proceed', function(val) {
 						if (val < 0) {
@@ -64,6 +80,7 @@ angular.module('fitApp').
 
 					$swipe.bind($swiper, {
 						'start': function(coords) {
+							swiped = false;
 							restrictRight = !attrs.onSwipeRight;
 							restrictLeft = !attrs.onSwipeLeft;
 							startCoords = coords;
@@ -81,6 +98,7 @@ angular.module('fitApp').
 
 						'end': function(endCoords) {
 							scope.$apply(function() {
+								swiped = isSwiped(endCoords);
 								scope.proceed = isCompleted(endCoords);
 								updateElementPosition(0);
 							});

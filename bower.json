@@ -19,6 +19,7 @@
     "angular-touch": "~1.2.14",
     "moment": "~2.5.1",
     "angular-moment": "~0.6.2",
-    "angular-route": "~1.2.14"
+    "angular-route": "~1.2.14",
+    "lodash": "~2.4.1"
   }
 }
