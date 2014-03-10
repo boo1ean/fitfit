@@ -97,3 +97,33 @@
 .workout-details .panel {
 	margin-bottom: 0;
 }
+
+[class*="st-"] {
+	color: white;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+[class*="st-"]:hover {
+	background: transparent;
+}
+
+.st-1 {
+	background: #ae0a0a;
+}
+
+.st-2 {
+	background: #e04e29;
+}
+
+.st-3 {
+	background: #EEAA44;
+}
+
+.st-4 {
+	background: #BDD123;
+}
+
+.st-5 {
+	background: #5ED025;
+}
