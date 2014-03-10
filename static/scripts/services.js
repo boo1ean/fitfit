@@ -102,6 +102,8 @@ angular.module('fitApp.services', []).
 			},
 
 			addExercise: function(exercise) {
+				exercise.weights = [10, 20, 30, 40];
+				exercise.times = [6, 8, 10, 12];
 				storage.push('exercises', timestampify(exercise));
 			},
 

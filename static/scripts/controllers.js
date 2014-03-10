@@ -39,12 +39,18 @@ angular.module('fitApp').
 			delete $scope.current.exercise;
 		};
 
-		$scope.addExercise = function(completedExercise) {
+		var addExercise = function(completedExercise) {
 			$scope.exercises = storage.touchExercise(completedExercise.exercise.id);
 			$scope.workout.exercises.unshift(completedExercise);
 			$scope.adding = false;
 			$scope.current = {};
 		};
+
+		$scope.$watch('current', function(current) {
+			if (current.weight && current.times && current.exercise) {
+				addExercise(current);
+			}
+		}, true);
 
 		$scope.removeExercise = function(exercise) {
 			if (confirm('Удалить подход?')) {
@@ -59,6 +65,7 @@ angular.module('fitApp').
 
 		$scope.finish = function() {
 			if (confirm('Завершить тренеровку?')) {
+				$scope.workout.endTime = new Date();
 				storage.addWorkout($scope.workout);
 				$window.onbeforeunload = null;
 				$location.path('/');

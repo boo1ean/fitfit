@@ -61,34 +61,13 @@
 		<div class="col col-xs-10 col-xs-push-1">
 
 			<div class="row">
-				<div class="col col-xs-12">
-					<input type="number" placeholder="Вес" class="form-control input-lg" ng-model="current.weight" />
-				</div>
+				<div class="col col-xs-12" ng-one-of items="current.exercise.weights" obj="current" prop='weight'></div>
 			</div>
 
 			<br />
 
 			<div class="row">
-				<div class="col col-xs-12" ng-one-of></div>
-			</div>
-
-			<br />
-
-			<div class="row">
-				<div class="col col-xs-12">
-					<input type="number" placeholder="Кол-во повторений" class="form-control input-lg" ng-model="current.times" />
-				</div>
-			</div>
-
-			<br />
-
-			<div class="row">
-				<div class="col col-xs-12">
-					<button class="btn btn-primary btn-lg btn-block" ng-click="addExercise(current)">
-						<span class="glyphicon glyphicon-plus"></span>
-						Добавить
-					</button>
-				</div>
+				<div class="col col-xs-12" ng-one-of items="current.exercise.times" obj="current" prop='times'></div>
 			</div>
 
 		</div>
