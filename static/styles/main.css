@@ -58,9 +58,8 @@
 
 .swipe-action {
 	position: absolute;
-	background: red;
-	height: 85px;
-	line-height: 85px;
+	height: 84px;
+	line-height: 84px;
 	padding: 0 10%;
 	width: 30%;
 	top: 0;
