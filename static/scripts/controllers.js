@@ -9,9 +9,7 @@ angular.module('fitApp').
 		$scope.workouts = storage.workouts();
 
 		$scope.remove = function(workout) {
-			if ($window.confirm('Удалить запись о тренеровке')) {
-				$scope.workouts = storage.removeWorkout(workout);
-			};
+			$scope.workouts = storage.removeWorkout(workout);
 		};
 	}).
 

@@ -6,8 +6,11 @@
 	</div>
 </div>
 
-<div class="item row" ng-repeat="workout in workouts" ng-swipe-left="remove(workout)">
-	<div class="col col-xs-12 title">
+<div class="item row" ng-repeat="workout in workouts | orderBy:'created_at':true">
+	<div class="col col-xs-12 title"
+		swipe-action
+		right-label="<span class='glyphicon glyphicon-trash'></span>"
+		on-swipe-left="remove(workout)">
 		{{ workout.startTime | amCalendar }}
 	</div>
 </div>
