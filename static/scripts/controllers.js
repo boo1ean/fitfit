@@ -18,19 +18,21 @@ angular.module('fitApp').
 			return 'Тренеровка еще не закончена. Вы уверенных что хотите завершить сейчас?'
 		};
 
-		//$window.onbeforeunload = warning;
+		$window.onbeforeunload = warning;
 
 		$scope.current = null;
 		$scope.adding = false;
 		$scope.exercises = storage.exercises();
 		$scope.currentTime = new Date();
-		$scope.workout = {
+		$scope.workout = storage.addWorkout({
 			startTime: new Date(),
+			endTime: new Date(),
 			exercises: []
-		};
+		});
 
 		var interval = $interval(function() {
-			$scope.currentTime = new Date();
+			$scope.workout.endTime = new Date();
+			storage.updateWorkout($scope.workout);
 		}, 1000);
 
 		$scope.unsetExercise = function() {
@@ -103,8 +105,9 @@ angular.module('fitApp').
 
 		$scope.finish = function() {
 			if (confirm('Завершить тренеровку?')) {
+				$interval.cancel(interval);
 				$scope.workout.endTime = new Date();
-				storage.addWorkout($scope.workout);
+				storage.updateWorkout($scope.workout);
 				$window.onbeforeunload = null;
 				$location.path('/');
 			}

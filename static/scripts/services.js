@@ -72,6 +72,8 @@ angular.module('fitApp.services', []).
 				var stored = storage.get(key);
 				stored.unshift(value);
 				storage.set(key, stored);
+
+				return value;
 			},
 
 			remove: function(key, item) {
@@ -124,11 +126,15 @@ angular.module('fitApp.services', []).
 			},
 
 			addWorkout: function(workout) {
-				storage.push('workouts', timestampify(workout));
+				return storage.push('workouts', timestampify(workout));
 			},
 
 			removeWorkout: function(workout) {
 				return storage.remove('workouts', workout);
+			},
+
+			updateWorkout: function(workout) {
+				return storage.update('workouts', workout.id, workout);
 			}
 		};
 

@@ -1,6 +1,6 @@
 <div ng-show="!adding">
 	<div class="text-center workout-timer">
-		<h4>{{ currentTime - workout.startTime | amDurationFormat }}</h4>
+		<h4>{{ workout.endTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
 
 	<div class="toolbar row">
