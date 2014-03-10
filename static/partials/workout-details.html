@@ -13,51 +13,50 @@
 				<h3>Сводная статистика</h3>
 			</div>
 
-			<br />
-
-			<div class="row no-margin">
-				<div class="col left col-xs-10">
-					Колличество упражнений:
-				</div>
-				<div class="col right col-xs-2">
-					{{ exercisesCount }}
-				</div>
-			</div>
-
-			<br />
-
-			<div class="row no-margin">
-				<div class="col left col-xs-10">
-					Колличество подходов:
-				</div>
-				<div class="col right col-xs-2">
-					{{ workout.exercises.length }}
-				</div>
-			</div>
-
-			<br />
-
-			<div class="row no-margin">
-				<div class="col left col-xs-10">
-					Суммарно поднятый вес:
-				</div>
-				<div class="col right col-xs-2">
-					{{ totalWeight }}
-				</div>
-			</div>
-
-			<br />
-
-			<div class="row no-margin">
-				<div class="col left col-xs-10">
-					Длительность:
-				</div>
-				<div class="col right col-xs-2">
-					{{ duration.get('h') }} ч. {{ duration.get('m') }} м.
-				</div>
-			</div>
-
-			<br />
+			<table class="table">
+				<tbody>
+					<tr>
+						<td class="text-right">
+							Колличество упражнений:
+						</td>
+						<td>
+							{{ exercisesCount }}
+						</td>
+					</tr>
+					<tr>
+						<td class="text-right">
+							Колличество подходов:
+						</td>
+						<td>
+							{{ workout.exercises.length }}
+						</td>
+					</tr>
+					<tr>
+						<td class="text-right">
+							Суммарно поднятый вес:
+						</td>
+						<td>
+							{{ totalWeight }}
+						</td>
+					</tr>
+					<tr>
+						<td class="text-right">
+							Длительность:
+						</td>
+						<td>
+							{{ duration.get('h') }} ч. {{ duration.get('m') }} м.
+						</td>
+					</tr>
+					<tr>
+						<td class="text-right">
+							Колличество упражнений:
+						</td>
+						<td>
+							{{ exercisesCount }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
