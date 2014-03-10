@@ -62,8 +62,8 @@ angular.module('fitApp').
 		};
 
 		var adjustExercise = function(ex) {
-			var times = prioritize(ex.times, ex.completed_times);
-			var weights = prioritize(ex.weights, ex.completed_weight);
+			var times = prioritize(ex.times, ex.completedTimes);
+			var weights = prioritize(ex.weights, ex.completedWeight);
 
 			$scope.exercises = storage.updateExercise(ex.id, {
 				times: times,
@@ -87,7 +87,7 @@ angular.module('fitApp').
 		};
 
 		$scope.$watch('current', function(current) {
-			if (current && current.completed_weight && current.completed_times) {
+			if (current && current.completedWeight && current.completedTimes && current.difficult) {
 				addExercise(current);
 			}
 		}, true);
@@ -124,7 +124,7 @@ angular.module('fitApp').
 		var workout = $scope.workout = storage.findWorkout($routeParams.id);
 		$scope.exercisesCount = _.unique(workout.exercises, 'id').length;
 		$scope.totalWeight = _.reduce(workout.exercises, function(result, ex) {
-			result += ex.completed_times * ex.completed_weight;
+			result += ex.completedTimes * ex.completedWeight;
 			return result;
 		}, 0);
 

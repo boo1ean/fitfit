@@ -108,22 +108,48 @@
 	background: transparent;
 }
 
-.st-1 {
+.di-5, .st-1 {
 	background: #ae0a0a;
 }
 
-.st-2 {
+.di-4, .st-2 {
 	background: #e04e29;
 }
 
-.st-3 {
+.di-3, .st-3 {
 	background: #EEAA44;
 }
 
-.st-4 {
+.di-2, .st-4 {
 	background: #BDD123;
 }
 
-.st-5 {
+.di-1, .st-5 {
 	background: #5ED025;
+}
+
+.bo-di-5 {
+	border-left: 10px solid #ae0a0a;
+}
+
+.bo-di-4 {
+	border-left: 10px solid #e04e29;
+}
+
+.bo-di-3 {
+	border-left: 10px solid #EEAA44;
+}
+
+.bo-di-2 {
+	border-left: 10px solid #BDD123;
+}
+
+.bo-di-1 {
+	border-left: 10px solid #5ED025;
+}
+
+.btn.selected {
+	color: black;
+	background: transparent;
+	box-shadow: none;
 }

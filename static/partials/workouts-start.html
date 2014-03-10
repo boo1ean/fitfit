@@ -1,4 +1,4 @@
-<div ng-show="!workout.initial_state">
+<div ng-show="!workout.initialState">
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a ng-href="/">
@@ -13,19 +13,19 @@
 			<br />
 			<div class="btn-group btn-group-justified">
 				<div class="btn-group">
-					<button class="btn btn-lg btn-default st-1" ng-click="workout.initial_state = 1">1</button>
+					<button class="btn btn-lg st-1" ng-click="workout.initialState = 1">1</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg btn-default st-2" ng-click="workout.initial_state = 2">2</button>
+					<button class="btn btn-lg st-2" ng-click="workout.initialState = 2">2</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg btn-default st-3" ng-click="workout.initial_state = 3">3</button>
+					<button class="btn btn-lg st-3" ng-click="workout.initialState = 3">3</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg btn-default st-4" ng-click="workout.initial_state = 4">4</button>
+					<button class="btn btn-lg st-4" ng-click="workout.initialState = 4">4</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg btn-default st-5" ng-click="workout.initial_state = 5">5</button>
+					<button class="btn btn-lg st-5" ng-click="workout.initialState = 5">5</button>
 				</div>
 			</div>
 		</div>
@@ -38,10 +38,10 @@
 			<br />
 
 			<div class="input-group">
-				<input type="number" class="form-control input-lg" ng-model="workout.initial_weight">
+				<input type="number" class="form-control input-lg" ng-model="workout.initialWeight">
 
 				<span class="input-group-btn">
-					<button class="btn btn-lg btn-danger" type="button" ng-click="workout.initial_weight = null">
+					<button class="btn btn-lg btn-danger" type="button" ng-click="workout.initialWeight = null">
 						<span class="glyphicon glyphicon-remove"></span>
 					</button>
 				</span>
@@ -50,7 +50,7 @@
 	</div>
 </div>
 
-<div ng-show="!adding && workout.initial_state">
+<div ng-show="!adding && workout.initialState">
 	<div class="text-center workout-timer">
 		<h4>{{ workout.endTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
@@ -77,14 +77,14 @@
 			on-swipe-left="removeExercise(completed)"
 			on-swipe-right="repeatExercise(completed)">
 			<div class="row no-margin">
-				<div class="col col-xs-8 title">
+				<div class="col col-xs-8 title bo-di-{{ completed.difficult }}">
 					{{ completed.name }}
 				</div>
 				<div class="col col-xs-2 ex-weight">
-					{{ completed.completed_weight }}
+					{{ completed.completedWeight }}
 				</div>
 				<div class="col col-xs-2 ex-times">
-					{{ completed.completed_times }}
+					{{ completed.completedTimes }}
 				</div>
 			</div>
 		</div>
@@ -125,7 +125,7 @@
 				<div class="col col-xs-12"
 					ng-one-of
 					items="current.weights"
-					prop='current.completed_weight'
+					prop='current.completedWeight'
 					label="Вес"></div>
 			</div>
 
@@ -135,8 +135,32 @@
 				<div class="col col-xs-12"
 					ng-one-of
 					items="current.times"
-					prop='current.completed_times'
+					prop='current.completedTimes'
 					label="Количество повторений"></div>
+			</div>
+
+			<div class="row">
+				<div class="col col-xs-12">
+					<h3>Сложность</h3>
+
+					<div class="btn-group btn-group-justified">
+						<div class="btn-group">
+							<button ng-class="{selected: current.difficult == 1}" class="btn btn-lg di-1" ng-click="current.difficult = 1">1</button>
+						</div>
+						<div class="btn-group">
+							<button ng-class="{selected: current.difficult == 2}" class="btn btn-lg di-2" ng-click="current.difficult = 2">2</button>
+						</div>
+						<div class="btn-group">
+							<button ng-class="{selected: current.difficult == 3}" class="btn btn-lg di-3" ng-click="current.difficult = 3">3</button>
+						</div>
+						<div class="btn-group">
+							<button ng-class="{selected: current.difficult == 4}" class="btn btn-lg di-4" ng-click="current.difficult = 4">4</button>
+						</div>
+						<div class="btn-group">
+							<button ng-class="{selected: current.difficult == 5}" class="btn btn-lg di-5" ng-click="current.difficult = 5">5</button>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
