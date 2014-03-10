@@ -1,3 +1,4 @@
+{{ current | json }}
 <div ng-show="!adding">
 	<div class="text-center workout-timer">
 		<h4>{{ currentTime - workout.startTime | amDurationFormat }}</h4>
@@ -19,18 +20,18 @@
 
 	<div class="item row" ng-repeat="completed in workout.exercises" ng-swipe-left="removeExercise(completed)">
 		<div class="col col-xs-8 title">
-			{{ completed.exercise.name }}
+			{{ completed.name }}
 		</div>
 		<div class="col col-xs-2 ex-weight">
-			{{ completed.weight }}
+			{{ completed.completed_weight }}
 		</div>
 		<div class="col col-xs-2 ex-times">
-			{{ completed.times }}
+			{{ completed.completed_times }}
 		</div>
 	</div>
 </div>
 
-<div ng-show="adding && !current.exercise">
+<div ng-show="adding && !current">
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a href="" ng-click="adding = false">
@@ -40,13 +41,13 @@
 	</div>
 
 	<div class="item row" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
-		<div class="col col-xs-12 title" ng-click="current.exercise = exercise">
+		<div class="col col-xs-12 title" ng-click="selectExercise(exercise)">
 			{{ exercise.name }}
 		</div>
 	</div>
 </div>
 
-<div ng-show="adding && current.exercise">
+<div ng-show="adding && current">
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a href="" ng-click="unsetExercise()">
@@ -61,13 +62,13 @@
 		<div class="col col-xs-10 col-xs-push-1">
 
 			<div class="row">
-				<div class="col col-xs-12" ng-one-of items="current.exercise.weights" obj="current" prop='weight'></div>
+				<div class="col col-xs-12" ng-one-of items="current.weights" obj="current" prop='completed_weight'></div>
 			</div>
 
 			<br />
 
 			<div class="row">
-				<div class="col col-xs-12" ng-one-of items="current.exercise.times" obj="current" prop='times'></div>
+				<div class="col col-xs-12" ng-one-of items="current.times" obj="current" prop='completed_times'></div>
 			</div>
 
 		</div>

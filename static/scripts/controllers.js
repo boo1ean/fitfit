@@ -20,9 +20,9 @@ angular.module('fitApp').
 			return 'Тренеровка еще не закончена. Вы уверенных что хотите завершить сейчас?'
 		};
 
-		$window.onbeforeunload = warning;
+		//$window.onbeforeunload = warning;
 
-		$scope.current = {};
+		$scope.current = null;
 		$scope.adding = false;
 		$scope.exercises = storage.exercises();
 		$scope.currentTime = new Date();
@@ -36,21 +36,29 @@ angular.module('fitApp').
 		}, 1000);
 
 		$scope.unsetExercise = function() {
-			delete $scope.current.exercise;
+			$scope.current = null;
+		};
+
+		var adjustExercise = function(completedExercise) {
+			return $scope.exercises;
 		};
 
 		var addExercise = function(completedExercise) {
-			$scope.exercises = storage.touchExercise(completedExercise.exercise.id);
+			$scope.exercises = adjustExercise(completedExercise);
 			$scope.workout.exercises.unshift(completedExercise);
 			$scope.adding = false;
-			$scope.current = {};
+			$scope.current = null;
 		};
 
 		$scope.$watch('current', function(current) {
-			if (current.weight && current.times && current.exercise) {
+			if (current && current.completed_weight && current.completed_times) {
 				addExercise(current);
 			}
 		}, true);
+
+		$scope.selectExercise = function(exercise) {
+			$scope.current = exercise;
+		};
 
 		$scope.removeExercise = function(exercise) {
 			if (confirm('Удалить подход?')) {

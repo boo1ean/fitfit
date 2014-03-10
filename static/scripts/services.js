@@ -115,6 +115,10 @@ angular.module('fitApp.services', []).
 				return storage.touch('exercises', id);
 			},
 
+			updateExercise: function(id, attrs) {
+				return storage.update('exercises', id, attrs);
+			},
+
 			workouts: function() {
 				return storage.get('workouts');
 			},
