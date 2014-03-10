@@ -7,13 +7,12 @@ angular.module('fitApp').
 
 			scope: {
 				items: '=',
-				obj: '=obj',
-				prop: '@'
+				prop: '=prop'
 			},
 
 			link: function(scope) {
 				scope.select = function(item) {
-					scope.obj[scope.prop] = item;
+					scope.prop = item;
 				};
 			}
 		};

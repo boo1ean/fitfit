@@ -1,4 +1,4 @@
-<div class="btn-group btn-group-justified" ng-show="!obj[prop] && !custom">
+<div class="btn-group btn-group-justified" ng-show="!prop && !custom">
 	<div class="btn-group" ng-repeat="item in items">
 		<button class="btn btn-lg btn-default" ng-click="select(item)">{{ item }}</button>
 	</div>
@@ -23,8 +23,8 @@
 	</span>
 </div>
 
-<div class="input-group" ng-show="obj[prop]">
-	<input type="text" class="form-control input-lg disabled" ng-model="obj[prop]" disabled>
+<div class="input-group" ng-show="prop">
+	<input type="text" class="form-control input-lg disabled" ng-model="prop" disabled>
 
 	<span class="input-group-btn">
 		<button class="btn btn-lg btn-danger" type="button" ng-click="select(null)">

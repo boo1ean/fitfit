@@ -39,12 +39,35 @@ angular.module('fitApp').
 			$scope.current = null;
 		};
 
-		var adjustExercise = function(completedExercise) {
-			return $scope.exercises;
+		var limit = 4;
+		var prioritize = function(array, item) {
+			var index;
+			array = angular.isArray(array) ? array : [];
+
+			if ((index = array.indexOf(item)) !== -1) {
+				array.splice(index, 1)
+				array.unshift(item);
+			} else {
+				array = array.slice(0, limit);
+				array.unshift(item);
+			}
+
+			return array;
+		};
+
+		var adjustExercise = function(ex) {
+			var times = prioritize(ex.times, ex.completed_times);
+			var weights = prioritize(ex.weights, ex.completed_weight);
+
+			$scope.exercises = storage.updateExercise(ex.id, {
+				times: times,
+				weights: weights,
+				accessed_at: new Date().getTime()
+			});
 		};
 
 		var addExercise = function(completedExercise) {
-			$scope.exercises = adjustExercise(completedExercise);
+			adjustExercise(completedExercise);
 			$scope.workout.exercises.unshift(completedExercise);
 			$scope.adding = false;
 			$scope.current = null;
@@ -57,7 +80,9 @@ angular.module('fitApp').
 		}, true);
 
 		$scope.selectExercise = function(exercise) {
-			$scope.current = exercise;
+			$scope.current = angular.copy(exercise);
+			$scope.current.created_at = new Date().getTime();
+			$scope.current.updated_at = new Date().getTime();
 		};
 
 		$scope.removeExercise = function(exercise) {
