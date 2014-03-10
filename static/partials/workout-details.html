@@ -47,14 +47,6 @@
 							{{ duration.get('h') }} ч. {{ duration.get('m') }} м.
 						</td>
 					</tr>
-					<tr>
-						<td class="text-right">
-							Колличество упражнений:
-						</td>
-						<td>
-							{{ exercisesCount }}
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -72,15 +64,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-center" ng-repeat="completed in workout.exercises">
+				<tr class="text-center bo-di-{{ completed.difficult }}" ng-repeat="completed in workout.exercises">
 					<td>
 						{{ completed.name }}
 					</td>
 					<td>
-						{{ completed.completed_weight }}
+						{{ completed.completedWeight }}
 					</td>
 					<td>
-						{{ completed.completed_times }}
+						{{ completed.completedTimes }}
 					</td>
 				</tr>
 			</tbody>
