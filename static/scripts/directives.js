@@ -7,7 +7,8 @@ angular.module('fitApp').
 
 			scope: {
 				items: '=',
-				prop: '=prop'
+				prop: '=prop',
+				label: '@'
 			},
 
 			link: function(scope) {
