@@ -18,7 +18,7 @@ angular.module('fitApp').
 			return 'Тренеровка еще не закончена. Вы уверенных что хотите завершить сейчас?'
 		};
 
-		$window.onbeforeunload = warning;
+		//$window.onbeforeunload = warning;
 
 		$scope.current = null;
 		$scope.adding = false;

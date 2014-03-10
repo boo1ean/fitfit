@@ -1,4 +1,56 @@
-<div ng-show="!adding">
+<div ng-show="!workout.initial_state">
+	<div class="toolbar row">
+		<div class="col col-xs-6">
+			<a ng-href="/">
+				<span class="glyphicon glyphicon-arrow-left"></span>
+			</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col col-xs-10 col-xs-push-1">
+			<h2 class="text-center">Состояние перед тренировкой</h2>
+			<br />
+			<div class="btn-group btn-group-justified">
+				<div class="btn-group">
+					<button class="btn btn-lg btn-default st-1" ng-click="workout.initial_state = 1">1</button>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-lg btn-default st-2" ng-click="workout.initial_state = 2">2</button>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-lg btn-default st-3" ng-click="workout.initial_state = 3">3</button>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-lg btn-default st-4" ng-click="workout.initial_state = 4">4</button>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-lg btn-default st-5" ng-click="workout.initial_state = 5">5</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col col-xs-10 col-xs-push-1">
+			<h2 class="text-center">Вес перед тренировкой</h2>
+
+			<br />
+
+			<div class="input-group">
+				<input type="number" class="form-control input-lg" ng-model="workout.initial_weight">
+
+				<span class="input-group-btn">
+					<button class="btn btn-lg btn-danger" type="button" ng-click="workout.initial_weight = null">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="!adding && workout.initial_state">
 	<div class="text-center workout-timer">
 		<h4>{{ workout.endTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
@@ -6,7 +58,7 @@
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a href="" ng-click="finish()">
-				<span class="glyphicon glyphicon-arrow-left"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 			</a>
 		</div>
 
