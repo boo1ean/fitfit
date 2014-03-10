@@ -93,3 +93,7 @@
 .workout-details .right {
 	padding-left: 15px;
 }
+
+.workout-details .panel {
+	margin-bottom: 0;
+}
