@@ -59,6 +59,11 @@ angular.module('fitApp').
 						return Math.abs(diff) >= actionWidth ? diff : 0;
 					};
 
+					var isMax = function(diff) {
+						var actionWidth = $swiper.width() / 3.333;
+						return Math.abs(diff) >= actionWidth;
+					};
+
 					var isSwiped = function(coords) {
 						var diff = coords.x - startCoords.x;
 						return Math.abs(diff) > 10;
@@ -93,7 +98,9 @@ angular.module('fitApp').
 								return;
 							}
 
-							updateElementPosition(diff);
+							if (!isMax(diff)) {
+								updateElementPosition(diff);
+							}
 						},
 
 						'end': function(endCoords) {
