@@ -13,6 +13,7 @@ angular.module('fitApp').
 			link: function(scope) {
 				scope.select = function(item) {
 					scope.prop = item;
+					scope.custom = scope.customValue = null;
 				};
 			}
 		};
