@@ -71,6 +71,13 @@ angular.module('fitApp').
 			$scope.current = null;
 		};
 
+		var copyExercise = function(exercise) {
+			exercise = angular.copy(exercise);
+			exercise.created_at = new Date().getTime();
+			exercise.updated_at = new Date().getTime();
+			return exercise;
+		};
+
 		$scope.$watch('current', function(current) {
 			if (current && current.completed_weight && current.completed_times) {
 				addExercise(current);
@@ -78,18 +85,18 @@ angular.module('fitApp').
 		}, true);
 
 		$scope.selectExercise = function(exercise) {
-			$scope.current = angular.copy(exercise);
-			$scope.current.created_at = new Date().getTime();
-			$scope.current.updated_at = new Date().getTime();
+			$scope.current = copyExercise(exercise);
+		};
+
+		$scope.repeatExercise = function(exercise) {
+			addExercise(copyExercise(exercise));
 		};
 
 		$scope.removeExercise = function(exercise) {
-			if (confirm('Удалить подход?')) {
-				for (var i in $scope.workout.exercises) {
-					if ($scope.workout.exercises[i].id === exercise.id) {
-						$scope.workout.exercises.splice(i, 1);
-						return;
-					}
+			for (var i in $scope.workout.exercises) {
+				if ($scope.workout.exercises[i].id === exercise.id) {
+					$scope.workout.exercises.splice(i, 1);
+					return;
 				}
 			}
 		};

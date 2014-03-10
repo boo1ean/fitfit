@@ -17,15 +17,24 @@
 		</div>
 	</div>
 
-	<div class="item row" ng-repeat="completed in workout.exercises" ng-swipe-left="removeExercise(completed)">
-		<div class="col col-xs-8 title">
-			{{ completed.name }}
-		</div>
-		<div class="col col-xs-2 ex-weight">
-			{{ completed.completed_weight }}
-		</div>
-		<div class="col col-xs-2 ex-times">
-			{{ completed.completed_times }}
+	<div class="item row" ng-repeat="completed in workout.exercises">
+		<div class="col col-xs-12"
+			swipe-action
+			left-label="<span class='glyphicon glyphicon-repeat'></span>"
+			right-label="<span class='glyphicon glyphicon-trash'></span>"
+			on-swipe-left="removeExercise(completed)"
+			on-swipe-right="repeatExercise(completed)">
+			<div class="row">
+				<div class="col col-xs-8 title">
+					{{ completed.name }}
+				</div>
+				<div class="col col-xs-2 ex-weight">
+					{{ completed.completed_weight }}
+				</div>
+				<div class="col col-xs-2 ex-times">
+					{{ completed.completed_times }}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
