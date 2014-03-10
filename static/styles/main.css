@@ -73,7 +73,7 @@
 	background: #b53143; 
 }
 
-.panel-heading h3 {
+h3 {
 	margin-top: 10px;
 }
 
@@ -98,13 +98,15 @@
 	margin-bottom: 0;
 }
 
-[class*="st-"] {
+.st-1, .st-2, .st-3, .st-4, .st-5,
+.di-1, .di-2, .di-3, .di-4, .di-5 {
 	color: white;
 	font-size: 2em;
 	font-weight: bold;
 }
 
-[class*="st-"]:hover {
+.st-1:hover, .st-2:hover, .st-3:hover, .st-4:hover, .st-5:hover,
+.di-1:hover, .di-2:hover, .di-3:hover, .di-4:hover, .di-5:hover {
 	background: transparent;
 }
 
