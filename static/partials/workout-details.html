@@ -61,18 +61,29 @@
 	</div>
 </div>
 
-<div class="row item" ng-repeat="completed in workout.exercises">
+<div class="row">
 	<div class="col col-xs-12">
-		<div class="row no-margin">
-			<div class="col col-xs-8 title">
-				{{ completed.name }}
-			</div>
-			<div class="col col-xs-2 ex-weight">
-				{{ completed.completed_weight }}
-			</div>
-			<div class="col col-xs-2 ex-times">
-				{{ completed.completed_times }}
-			</div>
-		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="text-center">Упражнение</th>
+					<th class="text-center">Вес</th>
+					<th class="text-center">Повт.</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-center" ng-repeat="completed in workout.exercises">
+					<td>
+						{{ completed.name }}
+					</td>
+					<td>
+						{{ completed.completed_weight }}
+					</td>
+					<td>
+						{{ completed.completed_times }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
