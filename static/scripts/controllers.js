@@ -111,9 +111,7 @@ angular.module('fitApp').
 		$scope.exercises = storage.exercises();
 
 		$scope.remove = function(exercise) {
-			if (confirm('Удалить упражнение?')) {
-				$scope.exercises = storage.removeExercise(exercise);
-			};
+			$scope.exercises = storage.removeExercise(exercise);
 		};
 	}).
 

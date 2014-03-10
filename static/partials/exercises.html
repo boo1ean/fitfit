@@ -11,8 +11,11 @@
 	</div>
 </div>
 
-<div class="item row" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
-	<div class="col col-xs-12 title" ng-swipe-left="remove(exercise)">
+<div class="item row exercises-list" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
+	<div class="col col-xs-12 title"
+		swipe-action
+		right-label="<span class='glyphicon glyphicon-trash'></span>"
+		on-swipe-left="remove(exercise)">
 		{{ exercise.name }}
 	</div>
 </div>
