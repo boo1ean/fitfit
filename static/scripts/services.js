@@ -16,6 +16,7 @@ angular.module('fitApp.services', []).
 		var timestampify = function(object) {
 			object.created_at = new Date().getTime();
 			object.updated_at = new Date().getTime();
+			object.accessed_at = new Date().getTime();
 
 			return object
 		};
