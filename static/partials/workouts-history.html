@@ -7,7 +7,7 @@
 </div>
 
 <div class="item row" ng-repeat="workout in workouts | orderBy:'created_at':true">
-	<div class="col col-xs-12 title"
+	<div class="col col-xs-12 title bo-st-{{ workout.initialState }}"
 		swipe-action
 		on-click="show(workout)"
 		left-label="<span class='glyphicon glyphicon-arrow-right'></span>"

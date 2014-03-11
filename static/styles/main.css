@@ -130,22 +130,27 @@ h3 {
 	background: #5ED025;
 }
 
+.bo-st-1,
 .bo-di-5 {
 	border-left: 10px solid #ae0a0a;
 }
 
+.bo-st-2,
 .bo-di-4 {
 	border-left: 10px solid #e04e29;
 }
 
+.bo-st-3,
 .bo-di-3 {
 	border-left: 10px solid #EEAA44;
 }
 
+.bo-st-4,
 .bo-di-2 {
 	border-left: 10px solid #BDD123;
 }
 
+.bo-st-5,
 .bo-di-1 {
 	border-left: 10px solid #5ED025;
 }
