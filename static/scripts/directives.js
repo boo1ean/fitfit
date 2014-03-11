@@ -3,7 +3,7 @@
 angular.module('fitApp').
 	directive('ngOneOf', function() {
 		return {
-			templateUrl: 'partials/directives/one-of.html',
+			templateUrl: '/partials/directives/one-of.html',
 
 			scope: {
 				items: '=',

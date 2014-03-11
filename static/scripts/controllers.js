@@ -14,27 +14,37 @@ angular.module('fitApp').
 			});
 		};
 
+		$scope.continue = function(workout) {
+			$location.path('/workouts-start/' + workout.id);
+		};
+
 		$scope.remove = function(workout) {
 			$scope.workouts = storage.removeWorkout(workout);
 		};
 	}).
 
-	controller('WorkoutsStartCtrl', function($scope, $window, $location, $interval, storage) {
+	controller('WorkoutsStartCtrl', function($scope, $window, $location, $interval, $routeParams, storage) {
 		var warning = function() {
 			return 'Тренеровка еще не закончена. Вы уверенных что хотите завершить сейчас?'
 		};
 
-		//$window.onbeforeunload = warning;
+		$window.onbeforeunload = warning;
 
 		$scope.current = null;
 		$scope.adding = false;
 		$scope.exercises = storage.exercises();
 		$scope.currentTime = new Date();
-		$scope.workout = storage.addWorkout({
-			startTime: new Date(),
-			endTime: new Date(),
-			exercises: []
-		});
+
+		var workout, id = $routeParams.id - 0;
+		if (angular.isNumber(id) && (workout = storage.findWorkout(id))) {
+			$scope.workout = workout;
+		} else {
+			$scope.workout = storage.addWorkout({
+				startTime: new Date(),
+				endTime: new Date(),
+				exercises: []
+			});
+		}
 
 		var interval = $interval(function() {
 			$scope.workout.endTime = new Date();

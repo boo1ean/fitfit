@@ -10,6 +10,8 @@
 	<div class="col col-xs-12 title"
 		swipe-action
 		on-click="show(workout)"
+		left-label="<span class='glyphicon glyphicon-arrow-right'></span>"
+		on-swipe-right="continue(workout)"
 		right-label="<span class='glyphicon glyphicon-trash'></span>"
 		on-swipe-left="remove(workout)">
 		{{ workout.startTime | amCalendar }}
