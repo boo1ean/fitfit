@@ -18,6 +18,19 @@
 
 <div class="row">
 	<div class="col col-xs-10 col-xs-push-1">
+		<div class="btn-group-vertical btn-block">
+			<button type="button" class="btn btn-default btn-block" ng-class="{active: exercise.weights}" ng-click="exercise.weights = !exercise.weights">Вес</button>
+			<button type="button" class="btn btn-default btn-block" ng-class="{active: exercise.times}" ng-click="exercise.times = !exercise.times">Повторения</button>
+			<button type="button" class="btn btn-default btn-block" ng-class="{active: exercise.duration}" ng-click="exercise.duration = !exercise.duration">Длительность</button>
+			<button type="button" class="btn btn-default btn-block" ng-class="{active: exercise.distance}" ng-click="exercise.distance = !exercise.distance">Дистанция</button>
+		</div>
+	</div>
+</div>
+
+<br />
+
+<div class="row">
+	<div class="col col-xs-10 col-xs-push-1">
 		<button class="btn btn-primary btn-lg btn-block" ng-click="save(exercise)">
 			<span class="glyphicon glyphicon-plus"></span>
 			Добавить
