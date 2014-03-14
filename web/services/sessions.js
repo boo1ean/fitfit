@@ -3,8 +3,8 @@ var users = require('../../core/dal/users'),
 
 var service = {
 	login: function(data) {
-		users.findByEmail(data.email).then(function(user) {
-			if (crypt.comparePassword(data.password, user.password)) {
+		return users.findByEmail(data.email).then(function(user) {
+			if (user && crypt.comparePassword(data.password, user.password)) {
 				return user;
 			}
 
@@ -16,3 +16,5 @@ var service = {
 		});
 	}
 };
+
+module.exports = service;

@@ -9,3 +9,5 @@ var dal = {
 		});
 	}
 };
+
+module.exports = dal;

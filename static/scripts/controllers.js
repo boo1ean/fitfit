@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('fitApp').
-	controller('IndexCtrl', function($scope) {
-
+	controller('IndexCtrl', function($scope, $window) {
+		$scope.user = $window.user;
 	}).
 
 	controller('WorkoutsHistoryCtrl', function($scope, $location, storage) {
@@ -151,6 +151,33 @@ angular.module('fitApp').
 
 		$scope.edit = function(exercise) {
 			$location.path('/exercises/' + exercise.id);
+		};
+	}).
+
+	controller('LoginCtrl', function($scope, $http, $window, $location) {
+		$scope.user = {};
+
+		$scope.clear = function() {
+			$scope.required = false;
+			$scope.error = false;
+		};
+
+		$scope.login = function(user) {
+			$scope.clear();
+
+			if (!user.email || !user.password) {
+				return $scope.required = true;
+			}
+
+			$http.post('/login', user)
+				.success(function(result) {
+					if (result.errors) {
+						$scope.error = result.errors.email;
+					} else {
+						$window.user = result;
+						$location.path('/');
+					}
+				});
 		};
 	}).
 
