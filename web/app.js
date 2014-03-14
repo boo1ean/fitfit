@@ -2,6 +2,7 @@ var express = require('express'),
     dot = require('express-dot'),
     resolve = require('path').resolve,
     sessions = require('./services/sessions'),
+    users = require('../core/services/users'),
     config = require('../config'),
     session = require('express-session'),
     RedisStore = require('connect-redis')(session);
@@ -27,6 +28,12 @@ app.post('/login', function(req, res) {
 		res.redirect('/');
 	}, function(errors) {
 		res.send(errors);
+	});
+});
+
+app.post('/register', function(req, res) {
+	users.create(req.body).then(function() {
+		res.redirect('/login');
 	});
 });
 

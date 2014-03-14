@@ -154,6 +154,32 @@ angular.module('fitApp').
 		};
 	}).
 
+	controller('RegisterCtrl', function($scope, $http, $window, $location) {
+		$scope.user = {};
+
+		$scope.clear = function() {
+			$scope.required = false;
+			$scope.error = false;
+		};
+
+		$scope.submit = function(user) {
+			$scope.clear();
+
+			if (!user.email || !user.password) {
+				return $scope.required = true;
+			}
+
+			$http.post('/register', user)
+				.success(function(result) {
+					if (result.errors) {
+						$scope.error = result.errors.email;
+					} else {
+						$location.path('/login');
+					}
+				});
+		};
+	}).
+
 	controller('LoginCtrl', function($scope, $http, $window, $location) {
 		$scope.user = {};
 
@@ -162,7 +188,7 @@ angular.module('fitApp').
 			$scope.error = false;
 		};
 
-		$scope.login = function(user) {
+		$scope.submit = function(user) {
 			$scope.clear();
 
 			if (!user.email || !user.password) {

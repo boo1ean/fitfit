@@ -31,6 +31,10 @@ angular.module('fitApp', ['ngRoute', 'ngTouch', 'angularMoment', 'fitApp.service
 			templateUrl: '/partials/login.html',
 			controller: 'LoginCtrl'
 		}).
+			when('/register', {
+			templateUrl: '/partials/login.html',
+			controller: 'RegisterCtrl'
+		}).
 			otherwise({
 			redirectTo: '/'
 		});

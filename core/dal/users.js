@@ -7,6 +7,14 @@ var dal = {
 			email: 'asasfds',
 			password: 'qweqwe'
 		});
+	},
+
+	create: function(row) {
+		return Q({
+			id: 'asfasdf',
+			email: 'asasfds',
+			password: 'qweqwe'
+		});
 	}
 };
 
