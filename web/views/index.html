@@ -10,6 +10,9 @@
 	</head>
 	<body>
 		<div ng-view class="container-fluid"></div>
+		<script type="text/javascript">
+			window.user = {{= JSON.stringify(it.user) }};
+		</script>
 		<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 		<script src="/bower_components/jquery/dist/jquery.js"></script>
 		<script src="/bower_components/moment/moment.js"></script>

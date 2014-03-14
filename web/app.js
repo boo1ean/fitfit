@@ -1,4 +1,5 @@
 var express = require('express'),
+    dot = require('express-dot'),
     resolve = require('path').resolve,
     sessions = require('./services/sessions'),
     config = require('../config'),
@@ -11,9 +12,10 @@ var port = 3042;
 var app = express();
 
 app.configure(function() {
-	app.use(express.compress());
 	app.use(express.static(config.paths.staticContent));
-	app.use(express.favicon());
+	app.set('views', config.paths.views);
+	app.engine('html', dot.__express);
+	app.use(express.compress());
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
 	app.use(session({ store: sessionStorage, secret: config.sessions.secret }));
@@ -35,7 +37,10 @@ app.get('/logout', function(req, res) {
 })
 
 app.get('*', function(req, res) {
-	res.sendfile(resolve(__dirname + '/../static/index.html'));
+	res.render('index.html', {
+		layout: false,
+		user: req.session.user
+	});
 });
 
 app.listen(port);
