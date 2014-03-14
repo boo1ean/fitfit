@@ -1,9 +1,10 @@
 var dal = require('../dal/users'),
-    Q =  require('q');
+    crypt = require('../crypt');
 
 
 var service = {
 	create: function(data) {
+		data.password = crypt.cryptPassword(data.password);
 		return dal.create(data);
 	}
 };

@@ -3,11 +3,7 @@ var db = require('../db'),
 
 var dal = {
 	findByEmail: function(email) {
-		return Q({
-			id: 'asfasdf',
-			email: 'asasfds',
-			password: 'qweqwe'
-		});
+		return db.findOne('users', { email: email });
 	},
 
 	create: function(row) {

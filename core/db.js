@@ -30,8 +30,26 @@ var insert = function(collectionName, item) {
 	});
 
 	return deferred.promise;
-}
+};
+
+var findOne = function(collectionName, pattern) {
+	var deferred = Q.defer();
+
+	query(function(db, cb) {
+		db.collection(collectionName).findOne(pattern, function(err, items) {
+			if (err) {
+				return deferred.reject(err);
+			}
+
+			deferred.resolve(items);
+			cb();
+		});
+	});
+
+	return deferred.promise;
+};
 
 module.exports = {
-	insert: insert
+	insert: insert,
+	findOne: findOne
 };

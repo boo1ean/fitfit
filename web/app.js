@@ -23,8 +23,12 @@ app.configure(function() {
 });
 
 app.post('/login', function(req, res) {
+	if (req.session.user) {
+		return res.redirect('/');
+	}
+
 	sessions.login(req.body).then(function(user) {
-		req.req.session.user = user;
+		req.session.user = user;
 		res.redirect('/');
 	}, function(errors) {
 		res.send(errors);
@@ -32,6 +36,10 @@ app.post('/login', function(req, res) {
 });
 
 app.post('/register', function(req, res) {
+	if (req.session.user) {
+		return res.redirect('/');
+	}
+
 	users.create(req.body).then(function() {
 		res.redirect('/login');
 	});
