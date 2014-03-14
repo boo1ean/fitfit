@@ -141,20 +141,33 @@ angular.module('fitApp').
 		$scope.duration = moment.duration(workout.endTime - workout.startTime);
 	}).
 
-	controller('ExercisesCtrl', function($scope, $window, storage) {
+	controller('ExercisesCtrl', function($scope, $window, $location, storage) {
 		$window.moment.lang('ru');
 		$scope.exercises = storage.exercises();
 
 		$scope.remove = function(exercise) {
 			$scope.exercises = storage.removeExercise(exercise);
 		};
+
+		$scope.edit = function(exercise) {
+			$location.path('/exercises/' + exercise.id);
+		};
 	}).
 
-	controller('ExercisesAddCtrl', function($scope, $location, storage) {
-		$scope.exercise = {};
+	controller('ExercisesAddCtrl', function($scope, $location, $routeParams, storage) {
+		var id = $routeParams.id - 0;
+		$scope.exercise = angular.isNumber(id) ? storage.findExercise(id) : {};
+
+		console.log($scope.exercise);
 
 		$scope.save = function(exercise) {
-			storage.addExercise(exercise);
+			console.log(exercise);
+			if (exercise.id) {
+				storage.updateExercise(exercise);
+			} else {
+				storage.addExercise(exercise);
+			}
+
 			$location.path('/exercises');
 		}
 	});

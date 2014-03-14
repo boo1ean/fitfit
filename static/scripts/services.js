@@ -127,6 +127,10 @@ angular.module('fitApp.services', []).
 				return storage.update('exercises', id, attrs);
 			},
 
+			findExercise: function(id) {
+				return storage.find('exercises', id);
+			},
+
 			workouts: function() {
 				return storage.get('workouts');
 			},

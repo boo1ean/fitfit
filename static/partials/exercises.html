@@ -5,7 +5,7 @@
 		</a>
 	</div>
 	<div class="col col-xs-6 text-right">
-		<a href="/exercises-add">
+		<a href="/exercises/new">
 			<span class="glyphicon glyphicon-plus"></span>
 		</a>
 	</div>
@@ -14,6 +14,8 @@
 <div class="item row exercises-list" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
 	<div class="col col-xs-12 title"
 		swipe-action
+		left-label="<span class='glyphicon glyphicon-edit'></span>"
+		on-swipe-right="edit(exercise)"
 		right-label="<span class='glyphicon glyphicon-trash'></span>"
 		on-swipe-left="remove(exercise)">
 		{{ exercise.name }}

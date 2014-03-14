@@ -23,7 +23,7 @@ angular.module('fitApp', ['ngRoute', 'ngTouch', 'angularMoment', 'fitApp.service
 			templateUrl: '/partials/exercises.html',
 			controller: 'ExercisesCtrl'
 		}).
-			when('/exercises-add', {
+			when('/exercises/:id', {
 			templateUrl: '/partials/exercises-add.html',
 			controller: 'ExercisesAddCtrl'
 		}).
