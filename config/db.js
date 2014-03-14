@@ -1,5 +1,5 @@
 module.exports = {
 	mongo: {
-		connection: 'mongodb://localhost/test'
+		connection: 'mongodb://localhost/fitfit'
 	}
 };

@@ -7,5 +7,5 @@ module.exports = {
 		}
 	},
 
-	secret: 'fit secret'
+	secret: 'fitfit'
 }

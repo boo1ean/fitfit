@@ -1,15 +1,37 @@
-var mongoose = require('mongoose'),
+var MongoClient = require('mongodb').MongoClient,
     Q = require('q'),
+    config = require('../config'),
     errorHandler = require('./error-handler');
 
-var deferred = Q.defer();
+var query = function(cb) {
+	MongoClient.connect(config.db.mongo.connection, function(err, db) {
+		if (err) {
+			throw err;
+		}
 
-mongoose.connect('mongodb://localhost/test');
+		cb(db, function() {
+			db.close();
+		});
+	});
+}
 
-db.on('error', errorHandler);
+var insert = function(collectionName, item) {
+	var deferred = Q.defer();
 
-db.once('open', function() {
+	query(function(db, cb) {
+		db.collection(collectionName).insert(item, function(err, items) {
+			if (err) {
+				return deferred.reject(err);
+			}
 
-});
+			deferred.resolve(items);
+			cb();
+		});
+	});
 
-return deferred.promise;
+	return deferred.promise;
+}
+
+module.exports = {
+	insert: insert
+};

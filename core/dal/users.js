@@ -1,4 +1,5 @@
-var Q = require('q');
+var db = require('../db'),
+    Q = require('q');
 
 var dal = {
 	findByEmail: function(email) {
@@ -10,11 +11,7 @@ var dal = {
 	},
 
 	create: function(row) {
-		return Q({
-			id: 'asfasdf',
-			email: 'asasfds',
-			password: 'qweqwe'
-		});
+		return db.insert('users', row);
 	}
 };
 
