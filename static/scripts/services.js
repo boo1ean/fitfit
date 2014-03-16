@@ -50,6 +50,7 @@ angular.module('fitApp.services', []).
 			},
 
 			set: function (key, value) {
+				localStorage.setItem('updatedAt', new Date().getTime());
 				localStorage.setItem(k(key), JSON.stringify(value));
 			},
 
@@ -149,6 +150,32 @@ angular.module('fitApp.services', []).
 
 			findWorkout: function(id) {
 				return storage.find('workouts', id);
+			},
+
+			serialize: function() {
+				return localStorage;
+			},
+
+			syncedAt: function(val) {
+				if (val) {
+					return localStorage.setItem('syncedAt', val);
+				}
+
+				return localStorage.getItem('syncedAt');
+			},
+
+			syncNow: function() {
+				storage.syncedAt(new Date().getTime());
+			},
+
+			sync: function(data) {
+				if (data.updatedAt > storage.syncedAt()) {
+					for (var i in data) {
+						localStorage.setItem(i, data[i]);
+					}
+				}
+
+				storage.syncNow();
 			}
 		};
 

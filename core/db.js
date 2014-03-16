@@ -32,11 +32,31 @@ var insert = function(collectionName, item) {
 	return deferred.promise;
 };
 
-var findOne = function(collectionName, pattern) {
+var update = function(collectionName, criteria, data) {
+	var deferred = Q.defer();
+
+	var opt = { w: 1 };
+	var newObj = { $set: data };
+
+	query(function(db, cb) {
+		db.collection(collectionName).update(criteria, newObj, opt, function(err) {
+			if (err) {
+				return deferred.reject(err);
+			}
+
+			deferred.resolve(data);
+			cb();
+		})
+	});
+
+	return deferred.promise;
+};
+
+var findOne = function(collectionName, criteria) {
 	var deferred = Q.defer();
 
 	query(function(db, cb) {
-		db.collection(collectionName).findOne(pattern, function(err, items) {
+		db.collection(collectionName).findOne(criteria, function(err, items) {
 			if (err) {
 				return deferred.reject(err);
 			}
@@ -51,5 +71,6 @@ var findOne = function(collectionName, pattern) {
 
 module.exports = {
 	insert: insert,
+	update: update,
 	findOne: findOne
 };

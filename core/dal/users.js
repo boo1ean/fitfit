@@ -8,6 +8,11 @@ var dal = {
 
 	create: function(row) {
 		return db.insert('users', row);
+	},
+
+	updateByEmail: function(email, data) {
+		var criteria = { email: email };
+		return db.update('users', criteria, data);
 	}
 };
 

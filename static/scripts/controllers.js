@@ -1,8 +1,15 @@
 'use strict';
 
 angular.module('fitApp').
-	controller('IndexCtrl', function($scope, $window) {
+	controller('IndexCtrl', function($scope, $window, $http, storage) {
 		$scope.user = $window.user;
+
+		$scope.sync = function() {
+			var data = storage.serialize();
+			$http.post('/sync', data).success(function(data) {
+				storage.sync(data);
+			});
+		};
 	}).
 
 	controller('WorkoutsHistoryCtrl', function($scope, $location, storage) {

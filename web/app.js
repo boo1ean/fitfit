@@ -35,6 +35,12 @@ app.post('/login', function(req, res) {
 	});
 });
 
+app.post('/sync', function(req, res) {
+	users.sync(req.body, req.session.user).then(function(result) {
+		res.send(result);
+	});
+});
+
 app.post('/register', function(req, res) {
 	if (req.session.user) {
 		return res.redirect('/');
