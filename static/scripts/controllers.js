@@ -26,7 +26,9 @@ angular.module('fitApp').
 		};
 
 		$scope.remove = function(workout) {
-			$scope.workouts = storage.removeWorkout(workout);
+			if (confirm('Вы уверены?')) {
+				$scope.workouts = storage.removeWorkout(workout);
+			}
 		};
 	}).
 
@@ -118,10 +120,12 @@ angular.module('fitApp').
 		};
 
 		$scope.removeExercise = function(exercise) {
-			for (var i in $scope.workout.exercises) {
-				if ($scope.workout.exercises[i].id === exercise.id) {
-					$scope.workout.exercises.splice(i, 1);
-					return;
+			if (confirm('Вы уверены?')) {
+				for (var i in $scope.workout.exercises) {
+					if ($scope.workout.exercises[i].id === exercise.id) {
+						$scope.workout.exercises.splice(i, 1);
+						return;
+					}
 				}
 			}
 		};
@@ -153,7 +157,9 @@ angular.module('fitApp').
 		$scope.exercises = storage.exercises();
 
 		$scope.remove = function(exercise) {
-			$scope.exercises = storage.removeExercise(exercise);
+			if (confirm('Вы уверены?')) {
+				$scope.exercises = storage.removeExercise(exercise);
+			}
 		};
 
 		$scope.edit = function(exercise) {
