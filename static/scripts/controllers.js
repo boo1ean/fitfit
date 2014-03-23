@@ -26,6 +26,19 @@ angular.module('fitApp').
 	controller('WorkoutsHistoryCtrl', function($scope, $location, storage) {
 		$scope.workouts = storage.workouts();
 
+		$scope.cleanUp = function() {
+			if (confirm('Точно почистить?')) {
+				var workouts = storage.workouts();
+				for (var i in workouts) {
+					if (!workouts[i].exercises.length) {
+						storage.removeWorkout(workouts[i]);
+					}
+				}
+
+				$scope.workouts = storage.workouts();
+			}
+		};
+
 		$scope.show = function(workout) {
 			$scope.$apply(function() {
 				$location.path('/workouts/' + workout.id);
