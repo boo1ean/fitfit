@@ -1,4 +1,4 @@
-<div ng-show="!workout.initialState">
+<div ng-show="!workout.initialState || !workout.initialWeight">
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a ng-href="/">
@@ -54,7 +54,7 @@
 	</div>
 </div>
 
-<div ng-show="!adding && workout.initialState">
+<div ng-show="!adding && workout.initialState && workout.initialWeight">
 	<div class="text-center workout-timer">
 		<h4>{{ workout.endTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
