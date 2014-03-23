@@ -1,8 +1,14 @@
-<div ng-show="!workout.initialState || !workout.initialWeight">
+<div ng-show="!workout.start" class="initial-state">
 	<div class="toolbar row">
 		<div class="col col-xs-6">
 			<a ng-href="/">
 				<span class="glyphicon glyphicon-arrow-left"></span>
+			</a>
+		</div>
+
+		<div class="col col-xs-6 text-right">
+			<a ng-href="" ng-click="workout.start = true">
+				<span class="glyphicon glyphicon-arrow-right"></span>
 			</a>
 		</div>
 	</div>
@@ -11,23 +17,23 @@
 
 	<div class="row">
 		<div class="col col-xs-10 col-xs-push-1">
-			<h3 class="text-center">Состояние перед тренировкой</h3>
+			<h3 class="text-center">Самочувствие</h3>
 			<br />
 			<div class="btn-group btn-group-justified">
 				<div class="btn-group">
-					<button class="btn btn-lg st-1" ng-click="workout.initialState = 1">1</button>
+					<button ng-class="{selected: workout.initialState == 1}" class="btn btn-lg st-1" ng-click="workout.initialState = 1">1</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg st-2" ng-click="workout.initialState = 2">2</button>
+					<button ng-class="{selected: workout.initialState == 2}" class="btn btn-lg st-2" ng-click="workout.initialState = 2">2</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg st-3" ng-click="workout.initialState = 3">3</button>
+					<button ng-class="{selected: workout.initialState == 3}" class="btn btn-lg st-3" ng-click="workout.initialState = 3">3</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg st-4" ng-click="workout.initialState = 4">4</button>
+					<button ng-class="{selected: workout.initialState == 4}" class="btn btn-lg st-4" ng-click="workout.initialState = 4">4</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-lg st-5" ng-click="workout.initialState = 5">5</button>
+					<button ng-class="{selected: workout.initialState == 5}" class="btn btn-lg st-5" ng-click="workout.initialState = 5">5</button>
 				</div>
 			</div>
 		</div>
@@ -37,7 +43,7 @@
 
 	<div class="row">
 		<div class="col col-xs-10 col-xs-push-1">
-			<h3 class="text-center">Вес перед тренировкой</h3>
+			<h3 class="text-center">Вес</h3>
 
 			<br />
 
@@ -54,7 +60,7 @@
 	</div>
 </div>
 
-<div ng-show="!adding && workout.initialState && workout.initialWeight" class="completed-exercises">
+<div ng-show="!adding && workout.start" class="completed-exercises">
 	<div class="text-center workout-timer">
 		<h4>{{ workout.endTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
