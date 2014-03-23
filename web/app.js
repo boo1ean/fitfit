@@ -35,10 +35,12 @@ app.post('/login', function(req, res) {
 	});
 });
 
-app.post('/sync', function(req, res) {
-	users.sync(req.body, req.session.user).then(function(result) {
-		res.send(result);
-	});
+app.get('/data', function(req, res) {
+	users.get(req.session.user).then(res.send.bind(res));
+});
+
+app.post('/data', function(req, res) {
+	users.save(req.body, req.session.user).then(res.send.bind(res));
 });
 
 app.post('/register', function(req, res) {

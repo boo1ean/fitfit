@@ -4,11 +4,22 @@ angular.module('fitApp').
 	controller('IndexCtrl', function($scope, $window, $http, storage) {
 		$scope.user = $window.user;
 
-		$scope.sync = function() {
-			var data = storage.serialize();
-			$http.post('/sync', data).success(function(data) {
-				storage.sync(data);
-			});
+		$scope.save = function() {
+			if (confirm('Точно положить?')) {
+				var data = storage.serialize();
+				$http.post('/data', data).success(function() {
+					alert('Успех');
+				});
+			}
+		};
+
+		$scope.get = function() {
+			if (confirm('Точно взять?')) {
+				$http.get('/data').success(function(data) {
+					storage.load(data);
+					alert('Успех');
+				});
+			}
 		};
 	}).
 

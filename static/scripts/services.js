@@ -156,26 +156,10 @@ angular.module('fitApp.services', []).
 				return localStorage;
 			},
 
-			syncedAt: function(val) {
-				if (val) {
-					return localStorage.setItem('syncedAt', val);
+			load: function(data) {
+				for (var i in data) {
+					localStorage.setItem(i, data[i]);
 				}
-
-				return localStorage.getItem('syncedAt');
-			},
-
-			syncNow: function() {
-				storage.syncedAt(new Date().getTime());
-			},
-
-			sync: function(data) {
-				if (data.updatedAt > storage.syncedAt()) {
-					for (var i in data) {
-						localStorage.setItem(i, data[i]);
-					}
-				}
-
-				storage.syncNow();
 			}
 		};
 
