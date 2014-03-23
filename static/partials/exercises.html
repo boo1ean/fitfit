@@ -18,6 +18,6 @@
 		on-swipe-right="edit(exercise)"
 		right-label="<span class='glyphicon glyphicon-trash'></span>"
 		on-swipe-left="remove(exercise)">
-		{{ exercise.name }}
+		{{ exercise.name | characters:25 }}
 	</div>
 </div>

@@ -54,7 +54,7 @@
 	</div>
 </div>
 
-<div ng-show="!adding && workout.initialState && workout.initialWeight">
+<div ng-show="!adding && workout.initialState && workout.initialWeight" class="completed-exercises">
 	<div class="text-center workout-timer">
 		<h4>{{ workout.endTime - workout.startTime | amDurationFormat }}</h4>
 	</div>
@@ -82,7 +82,7 @@
 			on-swipe-right="repeatExercise(completed)">
 			<div class="row no-margin">
 				<div class="col col-xs-8 title bo-di-{{ completed.difficult }}">
-					{{ completed.name }}
+					{{ completed.name | characters:20 }}
 				</div>
 				<div class="col col-xs-2 ex-weight">
 					{{ completed.completedWeight }}
@@ -106,7 +106,7 @@
 
 	<div class="item row" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
 		<div class="col col-xs-12 title" ng-click="selectExercise(exercise)">
-			{{ exercise.name }}
+			{{ exercise.name | characters:25 }}
 		</div>
 	</div>
 </div>
