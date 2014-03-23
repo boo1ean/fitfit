@@ -59,8 +59,7 @@
 			<thead>
 				<tr>
 					<th class="text-center">Упражнение</th>
-					<th class="text-center">Вес</th>
-					<th class="text-center">Повт.</th>
+					<th class="text-center"><sup>Вес</sup> &frasl; <sub>повт.</sub></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,10 +68,7 @@
 						{{ completed.name }}
 					</td>
 					<td>
-						{{ completed.completedWeight }}
-					</td>
-					<td>
-						{{ completed.completedTimes }}
+						<sup>{{ completed.completedWeight }} </sup>&frasl;<sub> {{ completed.completedTimes }}</sub>
 					</td>
 				</tr>
 			</tbody>

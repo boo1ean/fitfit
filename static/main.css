@@ -29,8 +29,8 @@
 .controls .remove {
   background: #fff5f5;
 }
-.ex-weight,
-.ex-times {
+.ex-stats {
+  font-weight: bold;
   border-left: thin dashed #888;
 }
 .workout-timer {
@@ -151,7 +151,7 @@ h3 {
   box-shadow: none;
 }
 .completed-exercises .item {
-  font-size: 1em;
+  font-size: 1.2em;
 }
 .initial-state h3 {
   font-size: 1.5em;
