@@ -1,162 +1,140 @@
-.col {
-	padding: 0;
-}
+$row-height = 3em
+$row-font-size = 2em
+$toolbar-height = $row-height
 
-.nav a,
-.item {
-	display: block;
-	text-align: center;
-	cursor: pointer;
-	font-size: 2em;
-	line-height: 3em;
-	border-bottom: thin dashed #888;
-	background: white;
-}
+$c-worst = #ae0a0a
+$c-bad = #e04e29
+$c-not-good = #EEAA44
+$c-good = #BDD123
+$c-best = #5ED025
 
-.item:hover {
-	background: #ffe;
-}
+.col
+	padding: 0
 
-.toolbar {
-	line-height: 3em;
-	border-bottom: thin dashed #888;
-}
+.nav a
+.item
+	display: block
+	text-align: center
+	cursor: pointer
+	font-size: $row-font-size
+	line-height: $row-height
+	border-bottom: thin dashed #888
+	background: white
 
-.toolbar a {
-	font-size: 3em;
-	display: block;
-	padding: 10px;
-}
+.item:hover
+	background: #ffe
 
-.controls .cancel {
-	background: #f5f5ff;
-}
+.toolbar
+	line-height: $toolbar-height
+	border-bottom: thin dashed #888
 
-.controls .remove {
-	background: #fff5f5;
-}
+.toolbar a
+	font-size: $toolbar-height
+	display: block
+	padding: 10px
 
-.ex-weight,
-.ex-times {
-	border-left: thin dashed #888;
-}
+.controls .cancel
+	background: #f5f5ff
 
-.workout-timer {
-	position: absolute;
-	text-align: center;
-	width: 100%;
-	margin-top: 15px;
-	margin-left: -15px;
-}
+.controls .remove
+	background: #fff5f5
 
-.swiper {
-	z-index: 100;
-	background: white;
-}
+.ex-weight
+.ex-times
+	border-left: thin dashed #888
 
-.swipe-action {
-	position: absolute;
-	height: 84px;
-	line-height: 84px;
-	padding: 0 10%;
-	width: 30%;
-	top: 0;
-	border-bottom: thin dashed;
-}
+.workout-timer
+	position: absolute
+	text-align: center
+	width: 100%
+	margin-top: 15px
+	margin-left: -15px
 
-.swipe-action-left {
-	background: #26926e;
-}
+.swiper
+	z-index: 100
+	background: white
 
-.swipe-action-right {
-	right: 0;
-	background: #b53143; 
-}
+.swipe-action
+	position: absolute
+	height: 84px
+	line-height: 84px
+	padding: 0 10%
+	width: 30%
+	top: 0
+	border-bottom: thin dashed
 
-h3 {
-	margin-top: 10px;
-}
+.swipe-action-left
+	background: #26926e
 
-.no-margin {
-	margin: 0;
-}
+.swipe-action-right
+	right: 0
+	background: #b53143 
 
-.workout-details .row .col {
-	font-size: 1em;
-}
+h3
+	margin-top: 10px
 
-.workout-details .left {
-	padding-right: 15px;
-	text-align: right;
-}
+.no-margin
+	margin: 0
 
-.workout-details .right {
-	padding-left: 15px;
-}
+.workout-details .row .col
+	font-size: 1em
 
-.workout-details .panel {
-	margin-bottom: 0;
-}
+.workout-details .left
+	padding-right: 15px
+	text-align: right
+
+.workout-details .right
+	padding-left: 15px
+
+.workout-details .panel
+	margin-bottom: 0
 
 .st-1, .st-2, .st-3, .st-4, .st-5,
-.di-1, .di-2, .di-3, .di-4, .di-5 {
-	color: white;
-	font-size: 2em;
-	font-weight: bold;
-}
+.di-1, .di-2, .di-3, .di-4, .di-5
+	color: white
+	font-size: $row-font-size
+	font-weight: bold
 
 .st-1:hover, .st-2:hover, .st-3:hover, .st-4:hover, .st-5:hover,
-.di-1:hover, .di-2:hover, .di-3:hover, .di-4:hover, .di-5:hover {
-	background: transparent;
-}
+.di-1:hover, .di-2:hover, .di-3:hover, .di-4:hover, .di-5:hover
+	background: transparent
 
-.di-5, .st-1 {
-	background: #ae0a0a;
-}
+.di-5, .st-1
+	background: $c-worst
 
-.di-4, .st-2 {
-	background: #e04e29;
-}
+.di-4, .st-2
+	background: $c-bad
 
-.di-3, .st-3 {
-	background: #EEAA44;
-}
+.di-3, .st-3
+	background: $c-not-good
 
-.di-2, .st-4 {
-	background: #BDD123;
-}
+.di-2, .st-4
+	background: $c-good
 
-.di-1, .st-5 {
-	background: #5ED025;
-}
+.di-1, .st-5
+	background: $c-best
 
 .bo-st-1,
-.bo-di-5 {
-	border-left: 10px solid #ae0a0a;
-}
+.bo-di-5
+	border-left: 10px solid $c-worst
 
 .bo-st-2,
-.bo-di-4 {
-	border-left: 10px solid #e04e29;
-}
+.bo-di-4
+	border-left: 10px solid $c-bad
 
 .bo-st-3,
-.bo-di-3 {
-	border-left: 10px solid #EEAA44;
-}
+.bo-di-3
+	border-left: 10px solid $c-not-good
 
 .bo-st-4,
-.bo-di-2 {
-	border-left: 10px solid #BDD123;
-}
+.bo-di-2
+	border-left: 10px solid $c-good
 
 .bo-st-5,
-.bo-di-1 {
-	border-left: 10px solid #5ED025;
-}
+.bo-di-1
+	border-left: 10px solid $c-best
 
-.btn.selected {
-	color: black;
-	background: transparent;
-	box-shadow: none;
-}
+.btn.selected
+	color: black
+	background: transparent
+	box-shadow: none
