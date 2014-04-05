@@ -27,6 +27,10 @@ angular.module('fitApp', ['ngRoute', 'ngTouch', 'angularMoment', 'fitApp.service
 			templateUrl: '/partials/exercises-add.html',
 			controller: 'ExercisesAddCtrl'
 		}).
+			when('/exercises/:id/stats', {
+			templateUrl: '/partials/exercise-stats.html',
+			controller: 'ExerciseStatsCtrl'
+		}).
 			when('/login', {
 			templateUrl: '/partials/login.html',
 			controller: 'LoginCtrl'

@@ -114,6 +114,29 @@ h3
 .di-1, .st-5
 	background: $c-best
 
+.di-fill-5
+	fill: $c-worst
+
+.di-fill-4
+	fill: $c-bad
+
+.di-fill-3
+	fill: $c-not-good
+
+.di-fill-2
+	fill: $c-good
+
+.di-fill-1
+	fill: $c-best
+
+[class*="di-fill"]
+	stroke: white
+
+.chart-container
+	width: 950px
+	margin: 0 auto
+	margin-top: 50px
+
 .bo-st-1,
 .bo-di-5
 	border-left: 10px solid $c-worst
@@ -144,3 +167,22 @@ h3
 
 .initial-state h3
 	font-size: 1.5em
+
+.bar
+	width: 30px
+	display: inline-block
+	margin-right: 2px
+
+.bar:hover
+	background: blue
+	cursor: pointer
+
+.toolbar-title
+	text-align: center
+	position: absolute
+	margin-top: 13px
+	padding: 0
+	width: 100%
+
+.nav-back
+	z-index: 5

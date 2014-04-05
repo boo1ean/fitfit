@@ -160,6 +160,20 @@ angular.module('fitApp.services', []).
 				for (var i in data) {
 					localStorage.setItem(i, data[i]);
 				}
+			},
+
+			findExerciseStats: function(exerciseId) {
+				var workouts = storage.workouts();
+				var result = [];
+				for (var i in workouts) {
+					for (var j in workouts[i].exercises) {
+						if (workouts[i].exercises[j].id == exerciseId) {
+							result.push(workouts[i].exercises[j]);
+						}
+					}
+				}
+
+				return result;
 			}
 		};
 

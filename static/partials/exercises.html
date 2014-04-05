@@ -14,6 +14,7 @@
 <div class="item row exercises-list" ng-repeat="exercise in exercises | orderBy:'accessed_at':true">
 	<div class="col col-xs-12 title"
 		swipe-action
+		on-click="stats(exercise)"
 		left-label="<span class='glyphicon glyphicon-edit'></span>"
 		on-swipe-right="edit(exercise)"
 		right-label="<span class='glyphicon glyphicon-trash'></span>"
