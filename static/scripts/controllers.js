@@ -357,6 +357,79 @@ angular.module('fitApp').
 			.attr('class', function(d) { return 'exercise di-fill-' + d.difficult; });
 	}).
 
+	controller('StatsCtrl', function($scope, $routeParams, storage) {
+		var workouts = _.sortBy(_.filter(storage.workouts(), function(workout) {
+			return workout.initialWeight;
+		}), 'created_at');
+
+		_.each(workouts, function(w) {
+			w.time = moment(w.created_at).format('MM-DD');
+		});
+
+		var margin = {top: 20, right: 20, bottom: 30, left: 40},
+			width = 960 - margin.left - margin.right,
+			height = 500 - margin.top - margin.bottom;
+
+		var x = d3.scale.ordinal()
+			.rangeRoundBands([0, width], .1);
+
+		var y = d3.scale.linear()
+			.range([height, 0]);
+
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient('bottom');
+
+		var yAxis = d3.svg.axis()
+			.scale(y)
+			.orient('left')
+			.tickFormat(d3.format('.3s'));
+
+		var svg = d3.select('.chart-container')
+			.append('svg')
+			.attr('width', width + margin.left + margin.right)
+			.attr('height', height + margin.top + margin.bottom)
+			.append('g')
+			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+		var times = _.pluck(workouts, 'time');
+
+		var maxWeight = d3.max(workouts, function(d) {
+			return d.initialWeight;
+		}) + 3;
+
+		var minWeight = d3.min(workouts, function(d) {
+			return d.initialWeight;
+		}) - 3;
+
+		x.domain(times);
+		y.domain([minWeight, maxWeight]);
+
+		svg.append('g')
+			.attr('class', 'x axis')
+			.attr('transform', 'translate(0,' + height + ')')
+			.call(xAxis);
+
+		svg.append('g')
+			.attr('class', 'y axis')
+			.call(yAxis)
+			.append('text')
+			.attr('transform', 'rotate(-90)')
+			.attr('y', 6)
+			.attr('dy', '.71em')
+			.style('text-anchor', 'end')
+			.text('Вес');
+
+		svg.selectAll(".weight")
+			.data(workouts)
+			.enter()
+			.append('rect')
+			.attr('width', x.rangeBand())
+			.attr('x', function(d) { return x(d.time); })
+			.attr('y', function(d) { return y(d.initialWeight); })
+			.attr('height', function(d) { return height - y(d.initialWeight); });
+	}).
+
 	controller('ExercisesAddCtrl', function($scope, $location, $routeParams, storage) {
 		var id = $routeParams.id - 0;
 		$scope.exercise = angular.isNumber(id) ? storage.findExercise(id) : {};
