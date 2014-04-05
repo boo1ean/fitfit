@@ -257,7 +257,7 @@ angular.module('fitApp').
 		$scope.exercise = stats[0];
 
 		_.each(stats, function(ex) {
-			ex.power = ex.completedTimes + ex.completedWeight;
+			ex.power = ex.completedTimes * ex.completedWeight;
 			ex.time = moment(ex.created_at).format('YYYY-MM-DD');
 		});
 
@@ -287,59 +287,74 @@ angular.module('fitApp').
 
 		var xAxis = d3.svg.axis()
 			.scale(x0)
-			.orient("bottom");
+			.orient('bottom');
 
 		var yAxis = d3.svg.axis()
 			.scale(y)
-			.orient("left")
-			.tickFormat(d3.format(".2s"));
+			.orient('left')
+			.tickFormat(d3.format('.2s'));
 
-		var svg = d3.select(".chart-container")
-			.append("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
-			.append("g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		var svg = d3.select('.chart-container')
+			.append('svg')
+			.attr('width', width + margin.left + margin.right)
+			.attr('height', height + margin.top + margin.bottom)
+			.append('g')
+			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 		var times = _.unique(_.pluck(stats, 'time')).reverse();
 		var numberDomain = _.range(0, d3.max(data, function(d) { return d.length; }));
 		var maxPower = d3.max(stats, function(d) { return d.power; });
 
+		data = _.map(data, function(items) {
+			if (items.length < numberDomain.length) {
+				items = items.concat(_.range(items.length, numberDomain.length).map(function(index) {
+					return {
+						time: items[0].time,
+						power: maxPower,
+						index: index,
+						difficult: 42
+					};
+				}));
+			}
+
+			return items;
+		});
+
 		x0.domain(times);
 		x1.domain(numberDomain).rangeRoundBands([0, x0.rangeBand()]);
 		y.domain([0, maxPower]);
 
-		svg.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + height + ")")
+		svg.append('g')
+			.attr('class', 'x axis')
+			.attr('transform', 'translate(0,' + height + ')')
 			.call(xAxis);
 
-		svg.append("g")
-			.attr("class", "y axis")
+		svg.append('g')
+			.attr('class', 'y axis')
 			.call(yAxis)
-			.append("text")
-			.attr("transform", "rotate(-90)")
-			.attr("y", 6)
-			.attr("dy", ".71em")
-			.style("text-anchor", "end")
-			.text("Выхлоп");
+			.append('text')
+			.attr('transform', 'rotate(-90)')
+			.attr('y', 6)
+			.attr('dy', '.71em')
+			.style('text-anchor', 'end')
+			.text('Выхлоп');
 
-		var date = svg.selectAll(".exercise")
+		var date = svg.selectAll('.exercise')
 			.data(data)
 			.enter()
-			.append("g")
-			.attr("class", "g")
-			.attr("transform", function(d) { return "translate(" + x0(d[0].time) + ",0)"; });
+			.append('g')
+			.attr('class', 'exercise-date-group')
+			.attr('transform', function(d) { return 'translate(' + x0(d[0].time) + ',0)'; });
 
-		date.selectAll("rect")
+		date.selectAll('rect')
 			.data(function(d) { return d; })
 			.enter()
-			.append("rect")
-			.attr("width", x1.rangeBand())
-			.attr("x", function(d) { return x1(d.index); })
-			.attr("y", function(d) { return y(d.power); })
-			.attr("height", function(d) { return height - y(d.power); })
-			.attr("class", function(d) { return 'exercise di-fill-' + d.difficult; });
+			.append('rect')
+			.attr('width', x1.rangeBand())
+			.attr('x', function(d) { return x1(d.index); })
+			.attr('y', function(d) { return y(d.power); })
+			.attr('height', function(d) { return height - y(d.power); })
+			.attr('class', function(d) { return 'exercise di-fill-' + d.difficult; });
 	}).
 
 	controller('ExercisesAddCtrl', function($scope, $location, $routeParams, storage) {
