@@ -257,7 +257,7 @@ angular.module('fitApp').
 		$scope.exercise = stats[0];
 
 		_.each(stats, function(ex) {
-			ex.power = ex.completedTimes * ex.completedWeight;
+			//ex.power = ex.completedTimes * ex.completedWeight * ex.difficult;
 			ex.time = moment(ex.created_at).format('YYYY-MM-DD');
 		});
 
@@ -265,8 +265,9 @@ angular.module('fitApp').
 
 		_.each(data, function(items, i) {
 			items = items.reverse();
-			_.each(items, function(item, i) {
-				item.index = i;
+			_.each(items, function(ex, i) {
+				ex.power = ex.completedTimes * ex.completedWeight * ex.difficult * (1 + (i + 1) / 10);
+				ex.index = i;
 			});
 		});
 
